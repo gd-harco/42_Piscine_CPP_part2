@@ -10,16 +10,18 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME =	ex00
+NAME =	ex01
 
 
 SRC_PATH =	srcs/
 
 SRC =	main.cpp	\
-		Bureaucrat/Bureaucrat.cpp
+		Bureaucrat/Bureaucrat.cpp	\
+		Form/Form.cpp
 
 DIR_INCS =	incs/				\
 			srcs/Bureaucrat/	\
+			srcs/Form/
 
 INCLUDES =\
 	$(addprefix -I , $(DIR_INCS))
