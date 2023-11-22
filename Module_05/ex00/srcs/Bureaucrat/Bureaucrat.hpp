@@ -14,21 +14,19 @@ public:
 	Bureaucrat(Bureaucrat const &obj);
 	~Bureaucrat();
 	Bureaucrat &operator= (const Bureaucrat &obj);
-
-	//exception class
-	class GradeTooHighException : public std::exception {
-		virtual const char* what();
-	};
-	class GradeTooLowException : public std::exception {
-		virtual const char* what();
-	};
-
 	//getter & setter
 	const std::string	&getName() const;
 	int					getGrade() const;
 	void				incrementGrade();
 	void				decrementGrade();
 private:
+	class GradeTooHighException : public std::exception {
+		virtual const char* what() const throw();
+	};
+	class GradeTooLowException : public std::exception {
+		virtual const char* what() const throw();
+	};
+
 	Bureaucrat();
 	const std::string	_name;
 	int					_grade;

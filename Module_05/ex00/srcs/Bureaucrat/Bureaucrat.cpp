@@ -35,11 +35,11 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
 	return *this;
 }
 
-const char *Bureaucrat::GradeTooHighException::what() {
+const char *Bureaucrat::GradeTooHighException::what() const throw() {
 	return "BureaucratException: GradeTooHigh";
 }
 
-const char *Bureaucrat::GradeTooLowException::what() {
+const char *Bureaucrat::GradeTooLowException::what() const throw() {
 	return "BureaucratException: GradeTooLow";
 }
 

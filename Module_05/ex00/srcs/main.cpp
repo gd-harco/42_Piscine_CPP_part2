@@ -23,9 +23,8 @@ int main() {
 		std::cout << good << std::endl;
 		tooLow->decrementGrade();
 	}
-	catch (std::exception & a) {
-	std::cout << "coucou Benoit " << a.what() <<std::endl;
+	catch (std::exception & e) {
+		std::cout << "coucou Benoit " << e.what() << std::endl;
 	}
-
 	return 0;
 }
