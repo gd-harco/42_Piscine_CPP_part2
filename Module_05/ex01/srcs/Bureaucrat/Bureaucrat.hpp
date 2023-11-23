@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string>
+
+class Form;
 class Bureaucrat {
 public:
 	//canonical
@@ -16,6 +18,9 @@ public:
 	int					getGrade() const;
 	void				incrementGrade();
 	void				decrementGrade();
+
+	//member function
+	void				signForm(Form &toSigned);
 
 	//exception subclass
 	class GradeTooHighException : public std::exception {

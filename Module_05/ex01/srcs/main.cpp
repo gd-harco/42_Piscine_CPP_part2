@@ -12,45 +12,36 @@
 
 #include "header.hpp"
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 int main() {
 	{
-		Bureaucrat *good = NULL;
-		Bureaucrat *tooLow = NULL;
+		Bureaucrat	Good("Asterix", 75);
+		Bureaucrat	Bad("Obelix", 150);
+		std::cout << Good << std::endl;
+		std::cout << Bad << std::endl;
+		Form		HighLevel("A38", 80, 80);
+		Form		LowLevel("B40", 149,149);
+		std::cout << HighLevel << std::endl;
+		std::cout << LowLevel << std::endl;
 
 		try {
-			good = new Bureaucrat("good", 5);
-			std::cout << *good << std::endl;
-			tooLow = new Bureaucrat("bad", 175);
-			good->incrementGrade();
-			std::cout << good << std::endl;
-			tooLow->decrementGrade();
-		} catch (std::exception &e) {
-			std::cout << RED << EXC_CAUGHT << e.what() << RESET << std::endl;
+			Good.signForm(HighLevel);
+			Bad.signForm(HighLevel);
+		} catch (std::exception &e){
+			std::cout << e.what() <<std::endl;
 		}
-		std::cout << "Incrementing Bureaucrat\"good\"" << std::endl;
-		good->incrementGrade();
-		std::cout << *good << std::endl;
-		std::cout << "decrementing Bureaucrat\"good\"" << std::endl;
-		good->decrementGrade();
-		std::cout << *good << std::endl;
-		delete good;
-	}
-	{
-		Bureaucrat *level1 = new Bureaucrat("level one", 1);
-		Bureaucrat &level1Ref = *level1;
-		std::cout << level1Ref << std::endl;
 		try {
-			level1Ref.decrementGrade();
-			std::cout << level1Ref << std::endl;
-			level1Ref.incrementGrade();
-			std::cout << level1Ref << std::endl;
-			level1Ref.incrementGrade();
-			std::cout << level1Ref << std::endl;
+			Bad.signForm(LowLevel);
+		} catch (std::exception &e) {
+			std::cout <<e.what() << std::endl;
 		}
-		catch (std::exception & e) {
-			std::cout << RED << EXC_CAUGHT << e.what() << RESET << std::endl;
+		try {
+			Bad.incrementGrade();
+			std::cout << Bad << std::endl;
+			Bad.signForm(LowLevel);
+		} catch (std::exception &e) {
+			std::cout << e.what() << std::endl;
 		}
-		delete (level1);
 	}
 	return 0;
 }

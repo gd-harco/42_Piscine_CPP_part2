@@ -1,5 +1,5 @@
 #include "Form.hpp"
-
+#include "Bureaucrat.hpp"
 
 Form::Form()
 		:_name("undefined"), _signed(false), _signGrade(150), _execGrade(150) {
@@ -29,6 +29,7 @@ Form &Form::operator=(const Form &obj) {
 		return *this;
 	else
 		this->_signed = obj._signed;
+	return *this;
 }
 
 const std::string &Form::getName() const {
@@ -47,7 +48,13 @@ int Form::getExecGrade() const {
 	return _execGrade;
 }
 
-
+void	Form::beSigned(Bureaucrat &employee) {
+	if (this->_signed)
+		throw Form::AlreadySignedException(this);
+	else if (employee.getGrade() > this->_signGrade)
+		throw Form::GradeTooLowException();
+	this->_signed = true;
+}
 
 const char *Form::GradeTooLowException::what() const throw() {
 	return "FormException: Grade too Low";
@@ -61,4 +68,11 @@ Form::AlreadySignedException::AlreadySignedException(Form *form) : m_form(form){
 
 std::string	Form::AlreadySignedException::whatNamed() const throw() {
 	return "FormException: form " + m_form->getName() + " already signed";
+}
+
+std::ostream &operator<<(std::ostream &os, const Form &form) {
+	os << std::boolalpha << "Form name: " << form.getName() << "\nIs signed: " << form.isSigned()
+	<< "\n_signGrade: " << form.getSignGrade()
+			<< "\n_execGrade: " << form.getExecGrade();
+	return os;
 }

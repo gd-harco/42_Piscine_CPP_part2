@@ -32,13 +32,12 @@ public:
 	};
 
 	class AlreadySignedException : public std::exception {
-		AlreadySignedException(Form *form);
+	public:
+		explicit AlreadySignedException(Form *form);
 		std::string	whatNamed() const throw();
 	private:
 		Form *m_form;
 	};
-
-
 private:
 	Form();
 	const std::string	_name;
@@ -47,10 +46,6 @@ private:
 	const int			_execGrade;
 };
 
-std::ostream &operator<<(std::ostream &os, const Form &form) {
-	os << "Form: " << form.getName() << " _signed: " << form.isSigned() << " _signGrade: " << form.getSignGrade()
-			<< " _execGrade: " << form.getExecGrade();
-	return os;
-}
+std::ostream &operator<<(std::ostream &os, const Form &form);
 
 #endif //FORM_HPP
