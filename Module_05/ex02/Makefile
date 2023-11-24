@@ -19,7 +19,8 @@ SRC =	main.cpp	\
 		Bureaucrat/Bureaucrat.cpp		\
 		Form/AForm.cpp					\
 		Form/ShrubberyCreationForm.cpp	\
-		Form/RobotomyRequestForm.cpp
+		Form/RobotomyRequestForm.cpp	\
+		Form/PresidentialPardonForm.cpp
 
 DIR_INCS =	incs/				\
 			srcs/Bureaucrat/	\

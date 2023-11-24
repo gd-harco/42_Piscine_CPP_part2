@@ -22,7 +22,6 @@ public:
 
 private:
 		RobotomyRequestForm();
-
 		std::string	_target;
 };
 
