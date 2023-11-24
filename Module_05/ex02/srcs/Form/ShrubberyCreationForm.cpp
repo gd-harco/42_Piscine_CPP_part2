@@ -10,7 +10,7 @@ ShrubberyCreationForm::ShrubberyCreationForm()
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& _target)
 		: AForm("Shrubbery", 145, 137), _target(_target){
-	std::cout << "ShrubberyCreationForm : Default Constructor Called" << std::endl;
+	std::cout << "ShrubberyCreationForm : Target Constructor Called" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &obj)
