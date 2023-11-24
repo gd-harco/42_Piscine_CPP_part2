@@ -20,7 +20,9 @@ public:
 	int getExecGrade() const;
 
 	//Member Function
-	void	beSigned(Bureaucrat &employee);
+	void			beSigned(Bureaucrat &employee);
+	bool			isAllowed(Bureaucrat const &employee);
+	virtual void	execute(Bureaucrat const & executor) = 0;
 
 	//Exception subclass
 	class GradeTooLowException : public std::exception {

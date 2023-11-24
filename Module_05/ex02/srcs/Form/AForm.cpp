@@ -76,3 +76,9 @@ std::ostream &operator<<(std::ostream &os, const AForm &form) {
 			<< "\n_execGrade: " << form.getExecGrade();
 	return os;
 }
+
+bool AForm::isAllowed(Bureaucrat const &employee) {
+	if (employee.getGrade() > this->_execGrade)
+		return false;
+	return true;
+}
