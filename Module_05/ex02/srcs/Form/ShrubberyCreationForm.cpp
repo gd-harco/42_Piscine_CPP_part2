@@ -32,7 +32,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void ShrubberyCreationForm::execute(const Bureaucrat &executor) {
 	if (!this->isAllowed(executor))
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	else {
 		std::string fileToOpen = this->_target + "_shrubbery";
 		this->_fileToWrite.open(fileToOpen.c_str());
