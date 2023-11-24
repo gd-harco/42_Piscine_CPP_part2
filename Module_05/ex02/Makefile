@@ -16,8 +16,9 @@ NAME =	ex02
 SRC_PATH =	srcs/
 
 SRC =	main.cpp	\
-		Bureaucrat/Bureaucrat.cpp	\
-		Form/Form.cpp
+		Bureaucrat/Bureaucrat.cpp		\
+		Form/AForm.cpp					\
+		Form/ShrubberyCreationForm.cpp
 
 DIR_INCS =	incs/				\
 			srcs/Bureaucrat/	\

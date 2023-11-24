@@ -1,17 +1,17 @@
 
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AFORM_HPP
+#define AFORM_HPP
 #include <iostream>
 #include <string>
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 public:
-	Form(const std::string& name, int toSign, int toExec);
-	Form(Form const &obj);
-	~Form();
-	Form &operator=(const Form &obj);
+	AForm(const std::string& name, int toSign, int toExec);
+	AForm(AForm const &obj);
+	virtual ~AForm() = 0;
+	AForm &operator=(const AForm &obj);
 
 	//Getter
 	const std::string &getName() const;
@@ -33,19 +33,19 @@ public:
 
 	class AlreadySignedException : public std::exception {
 	public:
-		explicit AlreadySignedException(Form *form);
+		explicit AlreadySignedException(AForm *form);
 		std::string	whatNamed() const throw();
 	private:
-		Form *m_form;
+		AForm *m_form;
 	};
 private:
-	Form();
+	AForm();
 	const std::string	_name;
 	bool				_signed;
 	const int			_signGrade;
 	const int			_execGrade;
 };
 
-std::ostream &operator<<(std::ostream &os, const Form &form);
+std::ostream &operator<<(std::ostream &os, const AForm &form);
 
-#endif //FORM_HPP
+#endif //AFORM_HPP
