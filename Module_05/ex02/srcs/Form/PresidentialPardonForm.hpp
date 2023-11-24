@@ -18,7 +18,7 @@ public:
 	PresidentialPardonForm &operator= (const PresidentialPardonForm &obj);
 
 	//Member Function
-	virtual void execute(const Bureaucrat &executor);
+	virtual void execute(const Bureaucrat &executor) const;
 
 private:
 		PresidentialPardonForm();

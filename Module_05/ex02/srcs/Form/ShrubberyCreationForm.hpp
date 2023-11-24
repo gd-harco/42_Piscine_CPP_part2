@@ -22,13 +22,13 @@ public:
 		virtual const char* what() const throw();
 };
 	//Member Function
-	virtual void execute(const Bureaucrat &executor);
+	virtual void execute(const Bureaucrat &executor) const;
 
 private:
 		ShrubberyCreationForm();
 
 		std::string	_target;
-		std::ofstream	_fileToWrite;
+		mutable std::ofstream	_fileToWrite;
 };
 
 

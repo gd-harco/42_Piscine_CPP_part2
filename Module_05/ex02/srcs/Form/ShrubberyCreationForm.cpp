@@ -30,7 +30,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	return *this ;
 }
 
-void ShrubberyCreationForm::execute(const Bureaucrat &executor) {
+void ShrubberyCreationForm::execute(const Bureaucrat &executor) const{
 	this->isAllowed(executor);
 	std::string fileToOpen = this->_target + "_shrubbery";
 	this->_fileToWrite.open(fileToOpen.c_str());

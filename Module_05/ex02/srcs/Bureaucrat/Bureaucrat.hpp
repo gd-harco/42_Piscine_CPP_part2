@@ -21,6 +21,7 @@ public:
 
 	//member function
 	void				signForm(AForm &toSigned);
+	void				executeForm(AForm const & form);
 
 	//exception subclass
 	class GradeTooHighException : public std::exception {

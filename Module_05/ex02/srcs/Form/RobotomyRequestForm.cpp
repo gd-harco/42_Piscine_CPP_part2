@@ -33,7 +33,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &o
 	return *this ;
 }
 
-void RobotomyRequestForm::execute(const Bureaucrat &executor) {
+void RobotomyRequestForm::execute(const Bureaucrat &executor) const {
 	this->isAllowed(executor);
 	if (std::rand() % 2)
 		std::cout << RED << "Robotomy failed" << RESET << std::endl;

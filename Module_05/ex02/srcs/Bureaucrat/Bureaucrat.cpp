@@ -1,5 +1,6 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "header.hpp"
 
 Bureaucrat::Bureaucrat()
 		: _name("undefined"), _grade(150){
@@ -70,6 +71,18 @@ const char *Bureaucrat::GradeTooHighException::what() const throw() {
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
 	return "BureaucratException: GradeTooLow";
 }
+
+void	Bureaucrat::executeForm(const AForm &form) {
+	try{
+		form.execute(*this);
+		std::cout << GREEN << this->_name + " executed " + form.getName()
+		<< RESET << std::endl;
+	} catch (std::exception &e) {
+		std::cout << RED << "Failure from " + this->_name + ". Reason: "
+		<< e.what() << RESET << std::endl;
+	}
+}
+
 
 std::ostream& operator<<(std::ostream &os, const Bureaucrat &Bureaucrat){
 	os << Bureaucrat.getName() +", bureaucrat grade " << Bureaucrat.getGrade() << ".";

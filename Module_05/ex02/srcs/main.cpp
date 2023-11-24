@@ -17,10 +17,9 @@ int main() {
 	test[0] = new ShrubberyCreationForm("test");
 	test[1] = new RobotomyRequestForm("to robotomise");
 	try {
-		test[0]->execute(Obelix);
-		test[1]->execute(Obelix);
-		test[1]->execute(Obelix);
-		test[1]->execute(Obelix);
+		Obelix.signForm(*test[0]);
+		Obelix.executeForm(*test[0]);
+		Obelix.signForm(*test[0]);
 	}	catch (std::exception &e){
 		std::cout << Obelix.getName() + "couldn't execute form because :" << e.what() <<std::endl;
 	}

@@ -18,7 +18,7 @@ public:
 	RobotomyRequestForm &operator= (const RobotomyRequestForm &obj);
 
 	//Member Function
-	virtual void execute(const Bureaucrat &executor);
+	virtual void execute(const Bureaucrat &executor) const;
 
 private:
 		RobotomyRequestForm();

@@ -81,7 +81,7 @@ std::ostream &operator<<(std::ostream &os, const AForm &form) {
 	return os;
 }
 
-bool AForm::isAllowed(Bureaucrat const &employee) {
+bool AForm::isAllowed(Bureaucrat const &employee) const{
 	if (employee.getGrade() > this->_execGrade)
 		throw Bureaucrat::GradeTooLowException();
 	else if (!this->_signed)

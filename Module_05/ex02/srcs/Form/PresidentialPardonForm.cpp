@@ -33,7 +33,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 	return *this ;
 }
 
-void PresidentialPardonForm::execute(const Bureaucrat &executor) {
+void PresidentialPardonForm::execute(const Bureaucrat &executor) const {
 	this->isAllowed(executor);
 	std::cout << GREEN << this->_target + " has been pardoned by Zaphod Beeblebrox" << RESET << std::endl;
 }

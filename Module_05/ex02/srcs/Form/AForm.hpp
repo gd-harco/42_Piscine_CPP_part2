@@ -13,7 +13,7 @@ public:
 	virtual ~AForm() = 0;
 	AForm &operator=(const AForm &obj);
 
-	//Getter
+	//Getterthis
 	const std::string &getName() const;
 	bool isSigned() const;
 	int getSignGrade() const;
@@ -21,8 +21,8 @@ public:
 
 	//Member Function
 	void			beSigned(Bureaucrat &employee);
-	bool			isAllowed(Bureaucrat const &employee);
-	virtual void	execute(Bureaucrat const & executor) = 0;
+	bool			isAllowed(Bureaucrat const &employee) const;
+	virtual void 	execute(Bureaucrat const & executor) const = 0;
 
 	//Exception subclass
 	class GradeTooLowException : public std::exception {
