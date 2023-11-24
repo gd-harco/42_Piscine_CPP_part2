@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-class Form;
+class AForm;
 class Bureaucrat {
 public:
 	//canonical
@@ -20,7 +20,7 @@ public:
 	void				decrementGrade();
 
 	//member function
-	void				signForm(Form &toSigned);
+	void				signForm(AForm &toSigned);
 
 	//exception subclass
 	class GradeTooHighException : public std::exception {
