@@ -34,12 +34,9 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &o
 }
 
 void RobotomyRequestForm::execute(const Bureaucrat &executor) {
-	if (!this->isAllowed(executor))
-		throw Bureaucrat::GradeTooHighException();
-	else {
-		if (std::rand() % 2)
-			std::cout << RED << "Robotomy failed" << RESET << std::endl;
-		else
-			std::cout << GREEN << "Bzzzzz... Bzzzz... Bzzzz\n" + this->_target + " has been Robotomized" << RESET << std::endl;
-	}
+	this->isAllowed(executor);
+	if (std::rand() % 2)
+		std::cout << RED << "Robotomy failed" << RESET << std::endl;
+	else
+		std::cout << GREEN << "Bzzzzz... Bzzzz... Bzzzz\n" + this->_target + " has been Robotomized" << RESET << std::endl;
 }

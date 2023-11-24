@@ -31,16 +31,13 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 }
 
 void ShrubberyCreationForm::execute(const Bureaucrat &executor) {
-	if (!this->isAllowed(executor))
-		throw Bureaucrat::GradeTooLowException();
-	else {
-		std::string fileToOpen = this->_target + "_shrubbery";
-		this->_fileToWrite.open(fileToOpen.c_str());
-		if (!this->_fileToWrite)
-			throw FileUnavailableException();
-		this->_fileToWrite << TREE << std::endl;
-		this->_fileToWrite.close();
-	}
+	this->isAllowed(executor);
+	std::string fileToOpen = this->_target + "_shrubbery";
+	this->_fileToWrite.open(fileToOpen.c_str());
+	if (!this->_fileToWrite)
+		throw FileUnavailableException();
+	this->_fileToWrite << TREE << std::endl;
+	this->_fileToWrite.close();
 }
 
 const char * ShrubberyCreationForm::FileUnavailableException::what() const throw() {

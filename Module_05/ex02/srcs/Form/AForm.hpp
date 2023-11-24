@@ -40,6 +40,10 @@ public:
 	private:
 		AForm *m_form;
 	};
+
+	class FormNotSignedException : public  std::exception{
+		virtual const char* what() const throw();
+	};
 private:
 	AForm();
 	const std::string	_name;

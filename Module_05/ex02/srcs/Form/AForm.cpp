@@ -70,6 +70,10 @@ std::string	AForm::AlreadySignedException::whatNamed() const throw() {
 	return "FormException: form " + m_form->getName() + " already signed";
 }
 
+const char *AForm::FormNotSignedException::what() const throw() {
+	return "FormException: the form hasn't prelab been signed";
+}
+
 std::ostream &operator<<(std::ostream &os, const AForm &form) {
 	os << std::boolalpha << "Form name: " << form.getName() << "\nIs signed: " << form.isSigned()
 	<< "\n_signGrade: " << form.getSignGrade()
@@ -79,6 +83,8 @@ std::ostream &operator<<(std::ostream &os, const AForm &form) {
 
 bool AForm::isAllowed(Bureaucrat const &employee) {
 	if (employee.getGrade() > this->_execGrade)
-		return false;
+		throw Bureaucrat::GradeTooLowException();
+	else if (!this->_signed)
+		throw FormNotSignedException();
 	return true;
 }

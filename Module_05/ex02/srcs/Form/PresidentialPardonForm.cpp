@@ -34,8 +34,6 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 }
 
 void PresidentialPardonForm::execute(const Bureaucrat &executor) {
-	if (!this->isAllowed(executor))
-		throw Bureaucrat::GradeTooHighException();
-	else
-			std::cout << GREEN << this->_target + " has been pardoned by Zaphod Beeblebrox" << RESET << std::endl;
+	this->isAllowed(executor);
+	std::cout << GREEN << this->_target + " has been pardoned by Zaphod Beeblebrox" << RESET << std::endl;
 }
