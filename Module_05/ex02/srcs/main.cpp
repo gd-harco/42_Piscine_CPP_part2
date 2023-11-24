@@ -12,17 +12,19 @@
 
 #include "header.hpp"
 int main() {
-	AForm *test;
+	AForm *test[10];
 	Bureaucrat Obelix("Obelix", 1);
-	test = new ShrubberyCreationForm("test");
-
+	test[0] = new ShrubberyCreationForm("test");
+	test[1] = new RobotomyRequestForm("to robotomise");
 	try {
-		test->execute(Obelix);
-
+		test[0]->execute(Obelix);
+		test[1]->execute(Obelix);
+		test[1]->execute(Obelix);
+		test[1]->execute(Obelix);
 	}	catch (std::exception &e){
 		std::cout << Obelix.getName() + "couldn't execute form because :" << e.what() <<std::endl;
 	}
 
-	delete test;
+	delete test[0];
 	return 0;
 }

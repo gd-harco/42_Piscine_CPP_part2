@@ -18,7 +18,8 @@ SRC_PATH =	srcs/
 SRC =	main.cpp	\
 		Bureaucrat/Bureaucrat.cpp		\
 		Form/AForm.cpp					\
-		Form/ShrubberyCreationForm.cpp
+		Form/ShrubberyCreationForm.cpp	\
+		Form/RobotomyRequestForm.cpp
 
 DIR_INCS =	incs/				\
 			srcs/Bureaucrat/	\
