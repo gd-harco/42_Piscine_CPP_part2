@@ -19,11 +19,13 @@ SRC =	main.cpp	\
 		Form/AForm.cpp					\
 		Form/ShrubberyCreationForm.cpp	\
 		Form/RobotomyRequestForm.cpp	\
-		Form/PresidentialPardonForm.cpp
+		Form/PresidentialPardonForm.cpp	\
+		Intern/Intern.cpp
 
 DIR_INCS =	incs/				\
 			srcs/Bureaucrat/	\
-			srcs/Form/
+			srcs/Form/			\
+			srcs/Intern/
 
 INCLUDES =\
 	$(addprefix -I , $(DIR_INCS))

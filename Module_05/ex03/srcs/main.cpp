@@ -12,54 +12,34 @@
 
 #include "header.hpp"
 
-/*
- * Shrubbery, 145, 137
- * Robotomy Request, 72, 45
- * PresidentialPardon, 25, 5
- */
+#define PRES "presidential pardon"
+#define SHRUB "shrubbery creation"
+#define ROBO "robotomy request"
+
 int main() {
-	// Create an array of pointers to AForm objects.
-	// Set all pointers to NULL.
-	AForm* test[10] = {NULL};
+	Intern gaston;
+	Bureaucrat fantasio("Fantasio", 1);
 
-	// Create two Bureaucrat objects named Obelix and Asterix.
-	Bureaucrat obelix("Obelix", 1);
-	Bureaucrat asterix("asterix", 138);
+	AForm *formList[10] = {NULL};
+	formList[0] = gaston.makeForm(PRES, "Dupont de Ligonnes");
+	formList[1] = gaston.makeForm(SHRUB, "The Garden of Eden");
+	formList[2] = gaston.makeForm(ROBO, "Hal 9000");
 
-	// Allocate memory for three AForm objects and assign their addresses
-	// to the first three positions in the test array.
-	test[0] = new ShrubberyCreationForm("test");
-	test[1] = new RobotomyRequestForm("to robotomise");
-	test[2] = new PresidentialPardonForm("Dupont de Ligones");
+	fantasio.signForm(*formList[0]);
+	fantasio.executeForm(*formList[0]);
 
-	// Create references to the three AForm objects for easier access.
-	AForm &tree = *test[0];
-	AForm &roboto = *test[1];
-	AForm &pardon = *test[2];
+	fantasio.signForm(*formList[1]);
+	fantasio.executeForm(*formList[1]);
 
-	// Asterix will try to signs and executes the 'tree' form.
-	// Obelix executes the 'tree' form.
-	// Obelix signs 'roboto' and 'pardon' forms.
-	// No need to catch exceptions here, they
-	// are handled in the Bureaucrat class.
-	asterix.signForm(tree);
-	asterix.executeForm(tree);
-	obelix.executeForm(tree);
-	obelix.signForm(roboto);
-	obelix.signForm(pardon);
+	fantasio.signForm(*formList[2]);
+	fantasio.executeForm(*formList[2]);
 
-	// Obelix executes 'roboto' form five times
-	// to prove the randomness of the execution.
-	for (int i = 0; i < 5; i++)
-		obelix.executeForm(roboto);
+	// Test a scenario where the bureaucrat doesn't have enough grade to execute the form
+	Bureaucrat prunelle("Prunelle", 70);
 
-	// Obelix signs the 'pardon' form.
-	// It should fail because it is already signed.
-	obelix.signForm(pardon);
+	prunelle.signForm(*formList[0]);
+	prunelle.executeForm(*formList[0]);
 
-	// Deallocate memory from all AForm
-	// objects that were created on the heap.
-	for (int i = 0;  test[i]; i++)
-		delete test[i];
-	return 0;
+	for (int i=0; formList[i]; i++)
+		delete formList[i];
 }
