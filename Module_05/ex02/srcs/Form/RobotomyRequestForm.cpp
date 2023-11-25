@@ -6,12 +6,12 @@
 #include <ctime>
 
 RobotomyRequestForm::RobotomyRequestForm()
-	: AForm("Shrubbery", 72, 45), _target("undefined") {
+	: AForm("Robotomy Request", 72, 45), _target("undefined") {
 	std::srand(std::time(0));
 	std::cout << "RobotomyRequestForm : Default Constructor Called" << std::endl;}
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& _target)
-		: AForm("Shrubbery", 72, 45), _target(_target){
+		: AForm("Robotomy Request", 72, 45), _target(_target){
 	std::srand(std::time(0));
 	std::cout << "RobotomyRequestForm : Target Constructor Called" << std::endl;
 }

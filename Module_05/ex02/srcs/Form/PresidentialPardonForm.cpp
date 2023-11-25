@@ -6,12 +6,12 @@
 #include <ctime>
 
 PresidentialPardonForm::PresidentialPardonForm()
-	: AForm("Shrubbery", 25, 5), _target("undefined") {
+	: AForm("Presidential Pardon", 25, 5), _target("undefined") {
 	std::srand(std::time(0));
 	std::cout << "PresidentialPardonForm : Default Constructor Called" << std::endl;}
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string& _target)
-		: AForm("Shrubbery", 25, 5), _target(_target){
+		: AForm("Presidential Pardon", 25, 5), _target(_target){
 	std::srand(std::time(0));
 	std::cout << "PresidentialPardonForm : Target Constructor Called" << std::endl;
 }
