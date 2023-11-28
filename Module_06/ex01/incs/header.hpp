@@ -12,5 +12,17 @@
 
 #ifndef HEADER_HPP
 #define HEADER_HPP
-#include "ScalarConverter.hpp"
+#include <string>
+
+enum gender{
+	male,
+	female
+};
+
+typedef struct s_data {
+	std::string name;
+	int			age;
+	gender		gender;
+	bool		isMajor;
+} Data;
 #endif //HEADER_HPP

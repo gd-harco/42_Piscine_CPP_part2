@@ -10,12 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME =	ex00
+NAME =	ex01
 
 
 SRC_PATH =	srcs/
 
-SRC =	main.cpp	ScalarConverter.cpp
+SRC =	main.cpp	Serializer.cpp
 
 DIR_INCS =	incs/ srcs/
 
@@ -30,7 +30,7 @@ DEBUGFLAGS	=	-fsanitize=address -g3
 DEPSFLAGS	=	-MMD -MP
 RM			=	rm -rf
 AR			=	ar rcs
-CXX			=	g++
+CXX			=	c++
 
 .PHONY:		all
 all:
