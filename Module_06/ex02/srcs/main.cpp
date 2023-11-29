@@ -6,11 +6,9 @@
 /*   By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 17:15:11 by gd-harco          #+#    #+#             */
-/*   Updated: 2023/11/10 15:01:26 by gd-harco         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:32:22 by gd-harco         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <typeinfo>
 
 #include "header.hpp"
 
@@ -93,15 +91,15 @@ void	identify(Base& p) {
 	try {
 		dynamic_cast<A&>(p);
 		std::cout << "Ref to " << &p << " is of type A" << std::endl;
-	} catch (std::bad_cast &a) {
+	} catch (std::exception &a) {
 		try {
 			dynamic_cast<B&>(p);
 			std::cout << "Ref to " << &p << " is of type B" << std::endl;
-		} catch (std::bad_cast &b) {
+		} catch (std::exception &b) {
 			try {
 				dynamic_cast<C&>(p);
 				std::cout << "Ref to " << &p << " is of type C" << std::endl;
-			} catch (std::bad_cast &c) {
+			} catch (std::exception &c) {
 				std::cout << "Strange Situation" << std::endl;
 			}
 		}
