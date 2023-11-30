@@ -12,14 +12,15 @@
 
 #include "header.hpp"
 
-void setSeed();
-Base *generate();
+void				setSeed();
+Base				*generate();
 static std::string	getInput();
-void identify(Base* p);
-void identify(Base& p);
+void				identify(Base* p);
+void				identify(Base& p);
 
 int main() {
 	setSeed();
+
 	std::string		input;
 	int				temp;
 
