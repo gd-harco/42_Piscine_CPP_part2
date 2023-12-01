@@ -68,7 +68,7 @@ static std::string	getInput() {
 	if (!std::cin)
 	{
 		std::cout << "STOP CLOSIN CIN YOU IDIOT!" << std::endl;
-		return NULL;
+		exit (1);
 	}
 	return (input);
 }
@@ -90,19 +90,19 @@ void	identify(Base* p) {
 
 void	identify(Base& p) {
 	try {
-		dynamic_cast<A&>(p);
+		static_cast<void>(dynamic_cast<A&>(p));
 		std::cout << "Ref to " << &p << " is of type A" << std::endl;
-	} catch (std::exception &a) {
-		try {
-			dynamic_cast<B&>(p);
-			std::cout << "Ref to " << &p << " is of type B" << std::endl;
-		} catch (std::exception &b) {
-			try {
-				dynamic_cast<C&>(p);
-				std::cout << "Ref to " << &p << " is of type C" << std::endl;
-			} catch (std::exception &c) {
-				std::cout << "Strange Situation" << std::endl;
-			}
-		}
+		return;
+	} catch (std::exception &a) {}
+	try {
+		static_cast<void>(dynamic_cast<B&>(p));
+		std::cout << "Ref to " << &p << " is of type B" << std::endl;
+		return;
+	} catch (std::exception &b){}
+	try {
+		static_cast<void>(dynamic_cast<C&>(p));
+		std::cout << "Ref to " << &p << " is of type C" << std::endl;
+	} catch (std::exception &c) {
+		std::cout << "Strange Situation" << std::endl;
 	}
 }
