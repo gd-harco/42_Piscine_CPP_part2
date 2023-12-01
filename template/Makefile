@@ -6,11 +6,11 @@
 #    By: gd-harco <gd-harco@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/07 20:23:57 by gd-harco          #+#    #+#              #
-#    Updated: 2023/11/10 11:03:14 by gd-harco         ###   ########.fr        #
+#    Updated: 2023/12/01 17:42:27 by gd-harco         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =	materia
+NAME =	NAME _GOES_HERE
 
 
 SRC_PATH =	srcs/
