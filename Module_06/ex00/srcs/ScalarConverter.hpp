@@ -12,7 +12,6 @@ class ScalarConverter {
 public:
 	~ScalarConverter();
 	static void convert(const std::string& litteral);
-class NAN : public std::exception {};
 private:
 		ScalarConverter();
 		ScalarConverter(ScalarConverter const &obj);
