@@ -27,16 +27,24 @@ static double	getDouble(const std::string &litteral) {
 	return myDouble;
 }
 
+static void handlNan(const std::string &litteral, std::string &charConvert, const double doubleConvert) {
+	if (litteral.size() == 1 && isprint(litteral[0]))
+		charConvert = litteral;
+	else
+		charConvert = "impossible";
+	const float floatConvert = static_cast<float>(doubleConvert);
+	std::cout << "char: " << charConvert << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: " << std::fixed << std::setprecision(1) << floatConvert << "f\n"
+			<< "double: " << doubleConvert << std::endl;
+}
+
 void	ScalarConverter::convert(const std::string& litteral) {
 	std::string		charConvert;
 
 	const double doubleConvert = getDouble(litteral);
-	if (std::isnan(doubleConvert))	{
-		if (litteral.size() == 1 && std::isprint(litteral[0]))
-			charConvert = litteral;
-		else
-			charConvert = "impossible";
-	}
+	if (std::isnan(doubleConvert) || std::isinf(doubleConvert))
+		return handlNan(litteral, charConvert, doubleConvert);
 	else
 		charConvert = static_cast<char>(doubleConvert);
 	const float floatConvert = static_cast<float>(doubleConvert);
