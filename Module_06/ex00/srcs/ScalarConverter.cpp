@@ -41,6 +41,8 @@ void	ScalarConverter::convert(const std::string& litteral) {
 		charConvert = static_cast<char>(doubleConvert);
 	const float floatConvert = static_cast<float>(doubleConvert);
 	const int intConvert = static_cast<int>(doubleConvert);
+	if (!isprint(intConvert))
+		charConvert = "impossible";
 	std::cout << "char: " << charConvert << std::endl;
 	if (std::isnan(doubleConvert))
 		std::cout << "int: impossible" << std::endl;
