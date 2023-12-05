@@ -12,13 +12,15 @@
 //that the two arguments must have the same type and must support all the comparison
 //operators.
 
-template <class T> void swap(T &a, T &b){
+template <class T>
+void	swap(T &a, T &b){
 	T c = a;
 	a = b;
 	b = c;
 }
 
-template <class T> T min(T a, T b){
+template <class T>
+T		min(T a, T b){
 	return (a > b)? a: b;
 }
 

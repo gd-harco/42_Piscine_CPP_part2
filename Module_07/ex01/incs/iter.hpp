@@ -14,7 +14,7 @@
 #define ITER_HPP
 
 template <class T, class U>
-void iter(T *array, int len, U(*function)(T)){
+void	iter(T *array, int len, U(*function)(T)){
 	for (int i=0; i<len; i++)
 		array[i] = function(array[i]);
 }
