@@ -14,27 +14,14 @@
 #include <string>
 #include <iostream>
 
-int	incr(int i);
-void printArray(int *array, int len);
+void setArray(int& element);
 
-int main(void) {
-	int (*incFunc)(int);
-	incFunc = incr;
-	int array[8];
-	for (int i=0; i<7; i++)
-		array[i] = i+1;
-	array[7] = 0;
-	printArray(array, 8);
-	iter(array, 8, incFunc);
-	std::cout << "----------ITER----------" << std::endl;
-	printArray(array, 8);
+//TODO check with Vinc & Thea
+int main() {
+	int* array[10];
+	iter(array, 10, &setArray);
 }
 
-int	incr(int i){
-	return i + 1;
-}
-
-void printArray(int *array, int len){
-	for (int i=0; i<len; i++)
-		std::cout << array[i] << std::endl;
+void setArray(int element){
+	element = 1;
 }
