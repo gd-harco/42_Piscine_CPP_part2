@@ -19,22 +19,29 @@ private:
 	T*				_array;
 	unsigned int	_size;
 public:
+	//Constructor
 	Array<T>() :
 			_array(new T[0]),
 			_size(0)
 	{}
 
-	Array<T>(const unsigned int len) :
+	explicit Array<T>(const unsigned int len) :
 			_array(new T[len]),
 			_size(len) {
 		for (unsigned int i=0; i < len; i++)
 			_array[i] = T();
 	}
 
-	Array<T>(const Array<T> &old) {
+	Array<T>(const Array<T> &old) : _array(NULL) {
 		*this = old;
 	}
 
+	//Destructor
+	~Array() {
+		delete[] this->_array;
+	}
+
+	//Operator Overload
 	Array<T> &operator=(const Array<T> &rhs) {
 		if (this == &rhs){
 			return *this;
@@ -48,8 +55,19 @@ public:
 			*it = *rhsIt;
 			++rhsIt;
 		}
+		return *this;
 	}
 
+	T &operator[](long index){
+		if (index < 0 || index >= _size)
+			throw std::exception();
+		return _array[index];
+	}
+
+	//Getter
+	unsigned int	size() const{
+		return _size;
+	}
 };
 
 

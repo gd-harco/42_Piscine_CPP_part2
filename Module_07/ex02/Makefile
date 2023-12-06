@@ -27,7 +27,7 @@ DIR_BUILD	=	.build/
 OBJS		=	$(patsubst %.cpp, $(DIR_BUILD)%.o, $(SRC))
 DEPS		=	$(patsubst %.cpp, $(DIR_BUILD)%.d, $(SRC))
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
-DEBUGFLAGS	=	-g3
+DEBUGFLAGS	=	-g3 -fsanitize=address
 DEPSFLAGS	=	-MMD -MP
 RM			=	rm -rf
 AR			=	ar rcs
