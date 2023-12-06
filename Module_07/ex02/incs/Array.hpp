@@ -19,14 +19,36 @@ private:
 	T*				_array;
 	unsigned int	_size;
 public:
-	Array() :
+	Array<T>() :
 			_array(new T[0]),
 			_size(0)
-	{};
-	Array(const unsigned int len) :
+	{}
+
+	Array<T>(const unsigned int len) :
 			_array(new T[len]),
-			_size(len)
-	{};
+			_size(len) {
+		for (unsigned int i=0; i < len; i++)
+			_array[i] = T();
+	}
+
+	Array<T>(const Array<T> &old) {
+		*this = old;
+	}
+
+	Array<T> &operator=(const Array<T> &rhs) {
+		if (this == &rhs){
+			return *this;
+		}
+		delete[] this->_array;
+		_size = rhs._size;
+		_array = new T[_size];
+		T* limit = _array + _size;
+		T* rhsIt = rhs._array;
+		for (T* it = _array; it != limit; ++it) {
+			*it = *rhsIt;
+			++rhsIt;
+		}
+	}
 
 };
 

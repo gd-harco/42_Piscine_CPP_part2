@@ -12,6 +12,8 @@
 
 NAME =	ex02
 
+DEBUG_NAME =	$(NAME)_debug
+
 SRC_PATH =	srcs/
 
 SRC =	main.cpp
@@ -25,7 +27,7 @@ DIR_BUILD	=	.build/
 OBJS		=	$(patsubst %.cpp, $(DIR_BUILD)%.o, $(SRC))
 DEPS		=	$(patsubst %.cpp, $(DIR_BUILD)%.d, $(SRC))
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
-DEBUGFLAGS	=	-fsanitize=address -g3
+DEBUGFLAGS	=	-g3
 DEPSFLAGS	=	-MMD -MP
 RM			=	rm -rf
 AR			=	ar rcs
@@ -36,7 +38,7 @@ all:
 			$(MAKE) $(NAME)
 
 debug:
-			$(MAKE) $(NAME) CPPFLAGS="$(CPPFLAGS) $(DEBUGFLAGS)"
+			$(MAKE) NAME=$(DEBUG_NAME) CPPFLAGS="$(CPPFLAGS) $(DEBUGFLAGS)"
 
 $(NAME):	$(OBJS)
 			$(CXX) $(CPPFLAGS) $(INCLUDES) $(OBJS) -o $(NAME)
@@ -51,6 +53,7 @@ clean:
 .PHONY:	fclean
 fclean:	clean
 		$(RM) $(NAME)
+		$(RM) $(DEBUG_NAME)
 
 .PHONY:	re
 re:		fclean
