@@ -20,7 +20,7 @@ void printArray(int *array, int len);
 int main(void) {
 	int (*incFunc)(int);
 	incFunc = incr;
-	int *array = new int[8];
+	int array[8];
 	for (int i=0; i<7; i++)
 		array[i] = i+1;
 	array[7] = 0;
@@ -28,7 +28,6 @@ int main(void) {
 	iter(array, 8, incFunc);
 	std::cout << "----------ITER----------" << std::endl;
 	printArray(array, 8);
-	delete[] array;
 }
 
 int	incr(int i){
