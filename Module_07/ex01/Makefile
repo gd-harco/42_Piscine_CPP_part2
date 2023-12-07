@@ -10,13 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME =	ex01
+NAME		=	ex01
 
-SRC_PATH =	srcs/
+NAME_DEBUG	=	$(NAME)_debug
 
-SRC =	main.cpp
+SRC_PATH	=	srcs/
 
-DIR_INCS =	incs/
+SRC			=	main.cpp
+
+DIR_INCS	=	incs/
 
 INCLUDES =\
 	$(addprefix -I , $(DIR_INCS))

@@ -14,9 +14,15 @@
 #define ITER_HPP
 
 template <typename T, typename U, typename V>
-void	iter(T *array, U len, V function(T& elem)) {
-	for (int i=0; i<len; i++)
-		function(array[i]);
+void	iter(T *array, U len, V (*f)(T&)) {
+	for (U i=0; i<len; ++i)
+		f(array[i]);
+}
+
+template <typename T, typename U, typename V>
+void	iter(const T *array, U len, V (*f)(const T&)) {
+	for (U i=0; i<len; ++i)
+		f(array[i]);
 }
 
 #endif //ITER_HPP
