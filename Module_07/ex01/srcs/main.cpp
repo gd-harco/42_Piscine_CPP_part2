@@ -18,6 +18,9 @@ void	print(const int& element);
 int		printPostCast(const int&element);
 void	addOne(int& element);
 
+//create an array of 10 int, called iter 2 with 2 const function
+//Then called iter with a non-const function to add 1
+//then recalled the 2 first function.
 int		main() {
 	int array[10] = {64, 65, 66, 67, 68, 69, 70, 71, 72, 73};
 	std::cout << "----------PRINT ARRAY----------" << std::endl;
