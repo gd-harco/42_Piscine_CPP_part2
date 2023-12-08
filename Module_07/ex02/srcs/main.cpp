@@ -1,8 +1,6 @@
 #include <iostream>
-#include <cstdlib>
 #include "Array.hpp"
 
-#define MAX_VAL 750
 int main(int, char**) {
 	//test on empty array
 	{
@@ -31,6 +29,13 @@ int main(int, char**) {
 		} catch (std::exception &e){
 			std::cout << e.what() << std::endl;
 		}
+	}
+	//test on a const array
+	{
+		const Array<int> constArray(20);
+		std::cout << constArray[10] <<std::endl;
+//		constArray[10] = 125; // uncomment to test the Read-only aspect of the operator overload
+		std::cout << constArray[10] <<std::endl;
 	}
 	return 0;
 }

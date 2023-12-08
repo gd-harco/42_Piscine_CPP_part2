@@ -70,6 +70,12 @@ public:
 		return _array[index];
 	}
 
+	T operator[](long index) const {
+		if (index < 0 || index >= _size)
+			throw InvalidIndexException();
+		return _array[index];
+	}
+
 	//Getter
 	unsigned int	size() const{
 		return _size;
