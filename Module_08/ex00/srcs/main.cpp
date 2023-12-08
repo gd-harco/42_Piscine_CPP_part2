@@ -10,41 +10,45 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
- * Write a function template easyfind that accepts a type T. It takes two parameters.
- * The first one has type T and the second one is an integer.
- * Assuming T is a container of integers, this function has to find the first occurrence
- * of the second parameter in the first parameter.
- * If no occurrence is found, you can either throw an exception or return an error value
- * of your choice. If you need some inspiration, analyze how standard containers behave.
- * Of course, implement and turn in your own tests to ensure everything works as expected.
- */
-
-#include "easyfind.hpp"
-#include <deque>
-
-
-void	easyFind(std::deque<int> container, int toFind) {
-	std::deque<int>::iterator found = std::find(container.begin(), container.end(), toFind);
-	if (*found != toFind)
-		throw std::exception();
-	std::cout << "found " << toFind << " at position " << found - container.begin() << std::endl;
-}
+#include "header.hpp"
 
 int main() {
-	std::deque<int> deck;
-	deck.push_back(5);
-	deck.push_back(20);
-	deck.push_back(30);
-	deck.push_back(40);
-	deck.push_back(20);
-	deck.push_back(40);
-	try
+	int a[] = { 5, 6, 1, 10, 2, 10};
+
+	//test on deque with const container
 	{
-	easyFind(deck, 50);
+		const std::deque<int> dequeCont(a, a + 6);
+		printContainer(dequeCont);
+		try {
+			easyFind(dequeCont, 5);
+		}
+		catch (std::exception &e) {
+			std::cout << e.what() << " - value toFind not in the given container" << std::endl;
+		}
 	}
-	catch (std::exception& e)
+	std::cout << SEPARATOR << std::endl;
+	//test on vector, try to modify iterators pointed value
 	{
-		std::cout << e.what() << " - value toFind not in the given container" << std::endl;
+		std::vector<int> vectorCont(a, a + 6);
+		printContainer(vectorCont);
+		try {
+			*easyFind(vectorCont, 6) = 5;
+		}
+		catch (std::exception &e) {
+			std::cout << e.what() << " - value toFind not in the given container" << std::endl;
+		}
+		printContainer(vectorCont);
+	}
+	std::cout << SEPARATOR << std::endl;
+	//test on list
+	{
+		std::list<int> listCont(a, a + 6);
+		printContainer(listCont);
+		try {
+			easyFind(listCont, 10);
+		}
+		catch (std::exception &e) {
+			std::cout << e.what() << " - value toFind not in the given container" << std::endl;
+		}
 	}
 }
