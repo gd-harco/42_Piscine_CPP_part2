@@ -18,6 +18,12 @@ class Array{
 private:
 	T*				_array;
 	unsigned int	_size;
+class InvalidIndexException : public std::exception{
+public:
+	const char* what() const throw() {
+		return ("Requested index does not exist");
+	};
+};
 public:
 	//Constructor
 	Array<T>() :
@@ -60,7 +66,7 @@ public:
 
 	T &operator[](long index){
 		if (index < 0 || index >= _size)
-			throw std::exception();
+			throw InvalidIndexException();
 		return _array[index];
 	}
 
