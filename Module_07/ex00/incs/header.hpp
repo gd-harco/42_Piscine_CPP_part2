@@ -14,7 +14,7 @@
 #define HEADER_HPP
 
 #include <iostream>
-#include "template.hpp"
+#include "whatever.hpp"
 
 template <typename T>
 void test(T& data1, T& data2){
