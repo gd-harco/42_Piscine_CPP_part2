@@ -5,12 +5,16 @@
 #include "Span.hpp"
 
 Span::Span()
-		: _spanSize(0), _storage(std::vector<int>(0)){}
+		: _spanSize(0), _storage(std::vector<int>()){}
 
 Span::Span(unsigned int spanSize)
-		: _spanSize(spanSize), _storage(std::vector<int>(_spanSize)){}
+		: _spanSize(spanSize), _storage(std::vector<int>()){}
 
 Span::~Span() {}
+
+Span::Span(const Span& old) {
+	*this = old;
+}
 
 Span& Span::operator=(const Span& rhs) {
 	if (this == &rhs)
@@ -20,6 +24,14 @@ Span& Span::operator=(const Span& rhs) {
 	return *this;
 }
 
-Span::Span(const Span& old) {
-	*this = old;
+const char* Span::SpanFullException::what() const throw() {
+	return "Span Already Full";
+}
+
+unsigned Span::span_size() const {
+	return _spanSize;
+}
+
+std::vector<int> Span::storage() const {
+	return _storage;
 }

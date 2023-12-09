@@ -9,12 +9,23 @@
 
 class Span {
 public:
+	//Canonical
 	Span();
 	explicit Span(unsigned int spanSize);
 	~Span();
+	Span(const Span& old);
 	Span &operator=(const Span &rhs);
 
-	Span(const Span& old);
+	//Exception Subclass
+	class SpanFullException : public std::exception {
+	public :
+		const char* what() const throw();
+	};
+
+	//Getter
+	unsigned span_size() const;
+	std::vector<int> storage() const;
+
 private:
 	unsigned int		_spanSize;
 	std::vector<int>	_storage;
