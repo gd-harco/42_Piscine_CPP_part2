@@ -28,6 +28,11 @@ const char* Span::SpanFullException::what() const throw() {
 	return "Span Already Full";
 }
 
+const char* Span::NoSpanToFindException::what() const throw() {
+	return "No Span to be found here";
+}
+
+
 unsigned Span::span_size() const {
 	return _spanSize;
 }

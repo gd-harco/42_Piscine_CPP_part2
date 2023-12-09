@@ -22,6 +22,11 @@ public:
 		const char* what() const throw();
 	};
 
+	class NoSpanToFindException : public std::exception {
+	public :
+		const char* what() const throw();
+	};
+
 	//Getter
 	unsigned span_size() const;
 	std::vector<int> storage() const;
