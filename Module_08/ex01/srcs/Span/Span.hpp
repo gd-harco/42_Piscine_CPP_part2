@@ -26,6 +26,8 @@ public:
 	unsigned span_size() const;
 	std::vector<int> storage() const;
 
+	//Member Function
+	void	addNumber(int n);
 private:
 	unsigned int		_spanSize;
 	std::vector<int>	_storage;

@@ -35,3 +35,9 @@ unsigned Span::span_size() const {
 std::vector<int> Span::storage() const {
 	return _storage;
 }
+
+void Span::addNumber(int n) {
+	if (this->_storage.size() == _spanSize)
+		throw SpanFullException();
+	_storage.push_back(n);
+}
