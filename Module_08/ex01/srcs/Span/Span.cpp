@@ -24,10 +24,6 @@ Span& Span::operator=(const Span& rhs) {
 	return *this;
 }
 
-const char* Span::SpanFullException::what() const throw() {
-	return "Span Already Full";
-}
-
 const char* Span::NoSpanToFindException::what() const throw() {
 	return "No Span to be found here";
 }
@@ -46,7 +42,7 @@ std::vector<int> Span::storage() const {
 
 void Span::addNumber(int n) {
 	if (this->_storage.size() == _spanSize)
-		throw SpanFullException();
+		throw std::out_of_range("NoSpanHere");
 	_storage.push_back(n);
 }
 
@@ -75,3 +71,5 @@ unsigned int	Span::shortestSpan() {
 	}
 	return (shortest);
 }
+
+Span::SpanFullException::SpanFullException() : std::out_of_range("The Span is too small") {}

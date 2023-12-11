@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <algorithm>
+#include <stdexcept>
 
 int ret(int a);
 
@@ -20,9 +21,11 @@ public:
 	Span &operator=(const Span &rhs);
 
 	//Exception Subclass
-	class SpanFullException : public std::exception {
+	class SpanFullException : public std::out_of_range {
 	public :
-		const char* what() const throw();
+		SpanFullException();
+
+		explicit SpanFullException(const std::string &arg);
 	};
 
 	class SpanWillFullException : public std::exception {
