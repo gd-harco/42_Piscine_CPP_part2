@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.hpp"
+#include "Span.hpp"
 
 int main(void) {
-	Span A(5);
-	Span B(6);
+	Span A(10);
 
-	A = B;
+	int array[6] = {5, 6 ,10 ,50, 60, 50};
+	A.addRange(array, 6);
 }

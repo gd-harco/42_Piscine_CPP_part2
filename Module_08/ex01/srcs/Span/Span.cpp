@@ -5,14 +5,14 @@
 #include "Span.hpp"
 
 Span::Span()
-		: _spanSize(0), _storage(std::multiset<int>()){}
+		: _spanSize(0), _storage(std::vector<int>()){}
 
 Span::Span(unsigned int spanSize)
-		: _spanSize(spanSize), _storage(std::multiset<int>()){}
+		: _spanSize(spanSize), _storage(std::vector<int>()){}
 
 Span::~Span() {}
 
-Span::Span(const Span& old) {
+Span::Span(const Span& old){
 	*this = old;
 }
 
@@ -40,20 +40,28 @@ unsigned Span::span_size() const {
 	return _spanSize;
 }
 
-std::multiset<int> Span::storage() const {
+std::vector<int> Span::storage() const {
 	return _storage;
 }
 
 void Span::addNumber(int n) {
 	if (this->_storage.size() == _spanSize)
 		throw SpanFullException();
-	_storage.insert(n);
+	_storage.push_back(n);
 }
 
-void Span::addRange(const int *array) {
-	unsigned int	arraySize = sizeof(array);
-	unsigned int	setSize = this->_storage.size();
-	if (arraySize + setSize >= this->_spanSize)
-		throw	SpanWillFullException();
-	storage().insert(array, array + arraySize);
+void	Span::addRange( int *array, const unsigned int len) {
+	unsigned int	vectorSize = this->_storage.size();
+	if (len + vectorSize >= this->_spanSize)
+		throw SpanWillFullException();
+	int* end = array + len;
+	for (int* current = array; current != end; current++)
+		this->addNumber(*current);
 }
+
+//unsigned int	Span::longestSpan() {
+//	if (this->_storage.size() <= 1)
+//		throw NoSpanToFindException();
+//	int first = *_storage.begin();
+//	int
+//}

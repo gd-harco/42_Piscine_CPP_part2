@@ -5,7 +5,10 @@
 #ifndef SPAN_HPP
 #define SPAN_HPP
 
-#include <set>
+#include <vector>
+#include <algorithm>
+
+int ret(int a);
 
 class Span {
 public:
@@ -34,14 +37,15 @@ public:
 
 	//Getter
 	unsigned span_size() const;
-	std::multiset<int> storage() const;
+	std::vector<int> storage() const;
 
 	//Member Function
-	void	addNumber(int n);
-	void	addRange(const int *array);
+	void			addNumber(int n);
+	void			addRange(int* array, unsigned int len);
+	unsigned int	longestSpan();
 private:
-	unsigned int	_spanSize;
-	std::multiset<int>	_storage;
+	unsigned int		_spanSize;
+	std::vector<int>	_storage;
 };
 
 
