@@ -50,14 +50,14 @@ void Span::addNumber(int n) {
 	_storage.push_back(n);
 }
 
-void	Span::addRange( int *array, const unsigned int len) {
-	unsigned int	vectorSize = this->_storage.size();
-	if (len + vectorSize >= this->_spanSize)
-		throw SpanWillFullException();
-	int* end = array + len;
-	for (int* current = array; current != end; current++)
-		this->addNumber(*current);
-}
+//void	Span::addRange( int *array, const unsigned int len) {
+//	unsigned int	vectorSize = this->_storage.size();
+//	if (len + vectorSize >= this->_spanSize)
+//		throw SpanWillFullException();
+//	int* end = array + len;
+//	for (int* current = array; current != end; current++)
+//		this->addNumber(*current);
+//}
 
 //unsigned int	Span::longestSpan() {
 //	if (this->_storage.size() <= 1)

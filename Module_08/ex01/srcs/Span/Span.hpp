@@ -41,7 +41,16 @@ public:
 
 	//Member Function
 	void			addNumber(int n);
-	void			addRange(int* array, unsigned int len);
+
+	template<typename T>
+	void			addRange(T begin, T end){
+		if (std::distance(begin, end) + this->storage().size() >= this->_spanSize)
+			throw SpanWillFullException();
+		while (begin != end){
+			this->addNumber(*begin);
+			begin++;
+		}
+	}
 	unsigned int	longestSpan();
 private:
 	unsigned int		_spanSize;
