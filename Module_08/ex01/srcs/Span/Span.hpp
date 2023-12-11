@@ -46,10 +46,7 @@ public:
 	void			addRange(T begin, T end){
 		if (std::distance(begin, end) + this->storage().size() >= this->_spanSize)
 			throw SpanWillFullException();
-		while (begin != end){
-			this->addNumber(*begin);
-			begin++;
-		}
+		this->_storage.insert(this->_storage.end(), begin, end);
 	}
 	unsigned int	longestSpan();
 private:
