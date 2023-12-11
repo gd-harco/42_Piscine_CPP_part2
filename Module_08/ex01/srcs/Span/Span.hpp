@@ -22,6 +22,11 @@ public:
 		const char* what() const throw();
 	};
 
+	class SpanWillFullException : public std::exception {
+	public :
+		const char* what() const throw();
+	};
+
 	class NoSpanToFindException : public std::exception {
 	public :
 		const char* what() const throw();
@@ -33,6 +38,7 @@ public:
 
 	//Member Function
 	void	addNumber(int n);
+	void	addRange(const int *array);
 private:
 	unsigned int	_spanSize;
 	std::multiset<int>	_storage;

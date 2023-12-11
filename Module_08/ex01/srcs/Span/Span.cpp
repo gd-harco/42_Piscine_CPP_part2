@@ -32,6 +32,9 @@ const char* Span::NoSpanToFindException::what() const throw() {
 	return "No Span to be found here";
 }
 
+const char* Span::SpanWillFullException::what() const throw() {
+	return "Span would be greater than authorised";
+}
 
 unsigned Span::span_size() const {
 	return _spanSize;
@@ -45,4 +48,12 @@ void Span::addNumber(int n) {
 	if (this->_storage.size() == _spanSize)
 		throw SpanFullException();
 	_storage.insert(n);
+}
+
+void Span::addRange(const int *array) {
+	unsigned int	arraySize = sizeof(array);
+	unsigned int	setSize = this->_storage.size();
+	if (arraySize + setSize >= this->_spanSize)
+		throw	SpanWillFullException();
+	storage().insert(array, array + arraySize);
 }
