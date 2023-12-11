@@ -5,7 +5,7 @@
 #ifndef SPAN_HPP
 #define SPAN_HPP
 
-#include <vector>
+#include <set>
 
 class Span {
 public:
@@ -29,13 +29,13 @@ public:
 
 	//Getter
 	unsigned span_size() const;
-	std::vector<int> storage() const;
+	std::multiset<int> storage() const;
 
 	//Member Function
 	void	addNumber(int n);
 private:
-	unsigned int		_spanSize;
-	std::vector<int>	_storage;
+	unsigned int	_spanSize;
+	std::multiset<int>	_storage;
 };
 
 

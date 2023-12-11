@@ -5,10 +5,10 @@
 #include "Span.hpp"
 
 Span::Span()
-		: _spanSize(0), _storage(std::vector<int>()){}
+		: _spanSize(0), _storage(std::multiset<int>()){}
 
 Span::Span(unsigned int spanSize)
-		: _spanSize(spanSize), _storage(std::vector<int>()){}
+		: _spanSize(spanSize), _storage(std::multiset<int>()){}
 
 Span::~Span() {}
 
@@ -37,12 +37,12 @@ unsigned Span::span_size() const {
 	return _spanSize;
 }
 
-std::vector<int> Span::storage() const {
+std::multiset<int> Span::storage() const {
 	return _storage;
 }
 
 void Span::addNumber(int n) {
 	if (this->_storage.size() == _spanSize)
 		throw SpanFullException();
-	_storage.push_back(n);
+	_storage.insert(n);
 }
