@@ -41,6 +41,8 @@ public:
 
 	//Member Function
 	void			addNumber(int n);
+	unsigned int	longestSpan();
+	unsigned int	shortestSpan();
 
 	template<typename T>
 	void			addRange(T begin, T end){
@@ -48,7 +50,6 @@ public:
 			throw SpanWillFullException();
 		this->_storage.insert(this->_storage.end(), begin, end);
 	}
-	unsigned int	longestSpan();
 private:
 	unsigned int		_spanSize;
 	std::vector<int>	_storage;

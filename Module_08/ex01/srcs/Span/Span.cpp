@@ -51,9 +51,27 @@ void Span::addNumber(int n) {
 }
 
 
-//unsigned int	Span::longestSpan() {
-//	if (this->_storage.size() <= 1)
-//		throw NoSpanToFindException();
-//	int first = *_storage.begin();
-//	int
-//}
+unsigned int	Span::longestSpan() {
+	if (this->_storage.size() <= 1)
+		throw NoSpanToFindException();
+	std::sort(this->_storage.begin(), this->_storage.end());
+	return this->_storage.back() - this->_storage.front();
+}
+
+unsigned int	Span::shortestSpan() {
+	if (this->_storage.size() <= 1)
+		throw NoSpanToFindException();
+	std::sort(this->_storage.begin(), this->_storage.end());
+	std::vector<int>::iterator current = this->_storage.begin();
+	std::vector<int>::iterator next = this->_storage.begin();
+	std::advance(next, 1);
+	unsigned int shortest = *next - *current ;
+	while (next != this->_storage.end()){
+		unsigned int currentSpan = *next - *current;
+		if (currentSpan < shortest)
+			shortest = currentSpan;
+		current = next;
+		std::advance(next, 1);
+	}
+	return (shortest);
+}
