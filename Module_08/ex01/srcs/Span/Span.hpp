@@ -21,11 +21,9 @@ public:
 	Span &operator=(const Span &rhs);
 
 	//Exception Subclass
-	class SpanFullException : public std::out_of_range {
+	class SpanFullException : public std::exception {
 	public :
-		SpanFullException();
-
-		explicit SpanFullException(const std::string &arg);
+		const char* what() const throw();
 	};
 
 	class SpanWillFullException : public std::exception {

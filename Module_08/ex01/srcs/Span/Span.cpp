@@ -24,6 +24,10 @@ Span& Span::operator=(const Span& rhs) {
 	return *this;
 }
 
+const char *Span::SpanFullException::what() const throw() {
+	return "can't add number, Data Structure is already full";
+}
+
 const char* Span::NoSpanToFindException::what() const throw() {
 	return "No Span to be found here";
 }
@@ -42,7 +46,7 @@ std::vector<int> Span::storage() const {
 
 void Span::addNumber(int n) {
 	if (this->_storage.size() == _spanSize)
-		throw std::out_of_range("NoSpanHere");
+		throw SpanFullException();
 	_storage.push_back(n);
 }
 
@@ -71,5 +75,3 @@ unsigned int	Span::shortestSpan() {
 	}
 	return (shortest);
 }
-
-Span::SpanFullException::SpanFullException() : std::out_of_range("The Span is too small") {}
