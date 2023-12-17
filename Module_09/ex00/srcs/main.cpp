@@ -18,6 +18,8 @@
 #include <cmath>
 
 void	readAndFillDB(std::map<std::string, double>& mapDB, std::ifstream& file);
+bool	validDate(const std::string& date);
+double	getDouble(const std::string& doubleStr);
 
 int main(/*int argc, char **argv*/) {
 // 	if (argc != 2)
@@ -42,9 +44,33 @@ void	readAndFillDB(std::map<std::string, double>& mapDB, std::ifstream& file) {
 		throw std::invalid_argument("database wrongly formated");
 	}
 	while (std::getline(file, tmpStr, ',') && std::getline(file, tmpDouble)) {
-		const double value = std::atof(tmpDouble.c_str());
+		if (!validDate(tmpStr))
+			throw std::invalid_argument("invalid date detected");
+		const double value = getDouble(tmpDouble);
 		if (value != value)
 			throw std::invalid_argument("invalid value detected");
 		mapDB.insert(std::make_pair(tmpStr, value));
 	}
+}
+
+bool validDate(const std::string& date) {
+	if (date.length() != 10)
+		return false;
+	if (date[4] != '-' || date[7] != '-')
+		return false;
+	for (int i = 0; i < 10; ++i) {
+		if (i == 4 || i == 7)
+			continue;
+		if (!isdigit(date[i]))
+			return false;
+	}
+	return true;
+}
+
+double	getDouble(const std::string& doubleStr) {
+	for (int i=0; doubleStr[i]; ++i) {
+		if (!isdigit(doubleStr[i]) && doubleStr[i] != '.')
+			return NAN;
+	}
+	return std::atof(doubleStr.c_str());
 }
