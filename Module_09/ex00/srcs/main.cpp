@@ -16,6 +16,7 @@
 #include <fstream>
 #include <map>
 #include <cmath>
+#include <sstream>
 
 void	readAndFillDB(std::map<std::string, double>& mapDB, std::ifstream& file);
 bool	validDate(const std::string& date);
@@ -41,16 +42,28 @@ void	readAndFillDB(std::map<std::string, double>& mapDB, std::ifstream& file) {
 	std::string tmpStr;
 	std::string tmpDouble;
 
+	std::string	tmpStr;
+	std::string	tmpDouble;
+	int			i = 1;
 	std::getline(file, tmpStr);
 	if (tmpStr != "date,exchange_rate") {
 		throw std::invalid_argument("database wrongly formated");
 	}
 	while (std::getline(file, tmpStr, ',') && std::getline(file, tmpDouble)) {
-		if (!validDate(tmpStr))
-			throw std::invalid_argument("invalid date detected");
+		i++;
+		if (!validDate(tmpStr)){
+			std::stringstream err;
+			err << "invalid date detected at line ";
+			err << i;
+			throw std::invalid_argument(err.str());
+		}
 		const double value = getDouble(tmpDouble);
-		if (value != value)
-			throw std::invalid_argument("invalid value detected");
+		if (value != value){
+			std::stringstream err;
+			err << "invalid value detected at line ";
+			err << i;
+			throw std::invalid_argument(err.str());
+		}
 		mapDB.insert(std::make_pair(tmpStr, value));
 	}
 }
