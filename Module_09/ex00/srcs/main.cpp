@@ -17,10 +17,14 @@
 #include <map>
 #include <cmath>
 #include <sstream>
+#include <algorithm>
 
-void	readAndFillDB(std::map<std::string, double>& mapDB, std::ifstream& file);
+typedef std::map<std::string, double> myMap;
+
+void	readAndFillDB(myMap & mapDB, std::ifstream& file);
 bool	validDate(const std::string& date);
 double	getDouble(const std::string& doubleStr);
+void	processFile(std::ifstream &file, const myMap &map);
 
 int main(int argc, char **argv) {
  	if (argc != 2)
@@ -29,19 +33,17 @@ int main(int argc, char **argv) {
 	std::ifstream input(argv[1]);
 	if (!database.is_open() || !input.is_open())
 		return (std::cout << "Error opening database or input file" << std::endl, 0);
-	std::map<std::string, double> mapDatabase;
+	myMap mapDatabase;
 	try {
 		readAndFillDB(mapDatabase, database);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 		return 1;
 	}
+	processFile(input, mapDatabase);
 }
 
-void	readAndFillDB(std::map<std::string, double>& mapDB, std::ifstream& file) {
-	std::string tmpStr;
-	std::string tmpDouble;
-
+void	readAndFillDB(myMap & mapDB, std::ifstream& file) {
 	std::string	tmpStr;
 	std::string	tmpDouble;
 	int			i = 1;
@@ -88,4 +90,31 @@ double	getDouble(const std::string& doubleStr) {
 			return NAN;
 	}
 	return std::atof(doubleStr.c_str());
+}
+
+void	processFile(std::ifstream &file, const myMap &map) {
+	std::string tmp;
+	std::getline(file, tmp);
+	if (tmp != "date | value") {
+		std::cout << "invalid input file" << std::endl;
+		return;
+	}
+	std::string buff;
+	std::getline(file, buff);
+	while (!buff.empty()){
+		std::string	currDate;
+		std::string	currValue;
+		std::stringstream	lineStream(buff);
+		getline(lineStream, currDate, '|');
+		if (lineStream.eof()){
+			std::cout << "Error: invalid line : " + currDate << std::endl;
+			std::getline(file, buff);
+			continue;
+		}
+		getline(lineStream, currValue);
+		myMap::const_iterator	iterator = map.upper_bound(currDate);
+		--iterator;
+		std::cout << iterator->first << std::endl;
+		std::getline(file, buff);
+	}
 }
