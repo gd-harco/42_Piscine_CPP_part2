@@ -21,11 +21,13 @@ void	readAndFillDB(std::map<std::string, double>& mapDB, std::ifstream& file);
 bool	validDate(const std::string& date);
 double	getDouble(const std::string& doubleStr);
 
-int main(/*int argc, char **argv*/) {
-// 	if (argc != 2)
-// 		return (std::cout << "ERROR: bad number of argument" << std::endl, 1);
-	// static_cast<void>(argv);
+int main(int argc, char **argv) {
+ 	if (argc != 2)
+ 		return (std::cout << "ERROR: bad number of argument" << std::endl, 1);
 	std::ifstream database("data.csv");
+	std::ifstream input(argv[1]);
+	if (!database.is_open() || !input.is_open())
+		return (std::cout << "Error opening database or input file" << std::endl, 0);
 	std::map<std::string, double> mapDatabase;
 	try {
 		readAndFillDB(mapDatabase, database);
