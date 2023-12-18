@@ -10,19 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <fstream>
-#include <map>
-#include <cmath>
-#include <sstream>
-#include <algorithm>
+#include "header.hpp"
 
 typedef std::map<std::string, double> myMap;
 
 void	readAndFillDB(myMap & mapDB, std::ifstream& file);
-bool	validDate(const std::string& date);
 double	getDouble(const std::string& doubleStr);
 void	processFile(std::ifstream &file, const myMap &map);
 

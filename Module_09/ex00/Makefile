@@ -14,7 +14,8 @@ NAME =	btc
 
 SRC_PATH =	srcs/
 
-SRC =	main.cpp
+SRC =	main.cpp \
+		valueCheck.cpp
 
 DIR_INCS =	incs/
 
