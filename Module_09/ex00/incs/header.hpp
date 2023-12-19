@@ -10,7 +10,7 @@
 #include <sstream>
 #include <algorithm>
 
-typedef std::map<std::string, double> myMap;
+typedef std::map<std::string, float> myMap;
 
 bool	validDateFormat(const std::string& date);
 bool	invalidDate(const std::string& date, myMap map);

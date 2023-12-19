@@ -13,7 +13,7 @@
 #include "header.hpp"
 
 void	readAndFillDB(myMap & mapDB, std::ifstream& file);
-double	getDouble(const std::string& doubleStr);
+double	getFloat(const std::string& doubleStr);
 void	processFile(std::ifstream &file, const myMap &map);
 
 int main(int argc, char **argv) {
@@ -49,7 +49,7 @@ void	readAndFillDB(myMap & mapDB, std::ifstream& file) {
 			err << i;
 			throw std::invalid_argument(err.str());
 		}
-		const double value = getDouble(tmpDouble);
+		const double value = getFloat(tmpDouble);
 		if (value != value){
 			std::stringstream err;
 			err << "invalid value detected at line ";
@@ -60,7 +60,7 @@ void	readAndFillDB(myMap & mapDB, std::ifstream& file) {
 	}
 }
 
-double	getDouble(const std::string& doubleStr) {
+double	getFloat(const std::string& doubleStr) {
 	for (int i=0; doubleStr[i]; ++i) {
 		if (!isdigit(doubleStr[i]) && doubleStr[i] != '.')
 			return NAN;
