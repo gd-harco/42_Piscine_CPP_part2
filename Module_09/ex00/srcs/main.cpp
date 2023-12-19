@@ -12,6 +12,7 @@
 
 #include "header.hpp"
 
+void	processLine(const myMap &map, const std::string& date, const float &value);
 void	readAndFillDB(myMap & mapDB, std::ifstream& file);
 double	getFloat(const std::string& doubleStr);
 void	processFile(std::ifstream &file, const myMap &map);
@@ -94,7 +95,12 @@ void	processFile(std::ifstream &file, const myMap &map) {
 			std::getline(file, buff);
 			continue;
 		}
-
+		processLine(map, currDate, currValue);
 		std::getline(file, buff);
 	}
+}
+
+void	processLine(const myMap &map, const std::string& date, const float &value){
+	myMap::const_iterator it = --(map.upper_bound(date));
+	std::cout << date +" => " << value << " = " << value * it->second <<std::endl;
 }

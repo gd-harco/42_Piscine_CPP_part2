@@ -14,5 +14,5 @@ typedef std::map<std::string, float> myMap;
 
 bool	validDateFormat(const std::string& date);
 bool	invalidDate(const std::string& date, myMap map);
-bool	invalidValue(const std::string& value);
+bool	invalidValue(float &value, const std::string &valueStr);
 #endif //HEADER_HPP
