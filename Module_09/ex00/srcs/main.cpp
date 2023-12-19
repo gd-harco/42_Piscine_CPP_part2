@@ -79,7 +79,6 @@ void	processFile(std::ifstream &file, const myMap &map) {
 	std::getline(file, buff);
 	while (!buff.empty()){
 		std::string	currDate;
-		std::string	currValue;
 		std::stringstream	lineStream(buff);
 		getline(lineStream, currDate, '|');
 		if (*(currDate.end() - 1) == ' ')
@@ -89,8 +88,9 @@ void	processFile(std::ifstream &file, const myMap &map) {
 			std::getline(file, buff);
 			continue;
 		}
-		getline(lineStream, currValue);
-		if (invalidDate(currDate, map) || invalidValue(currValue)){
+		getline(lineStream, tmp);
+		float		currValue = std::atof(tmp.c_str());
+		if (invalidDate(currDate, map) || invalidValue(currValue, tmp)){
 			std::getline(file, buff);
 			continue;
 		}

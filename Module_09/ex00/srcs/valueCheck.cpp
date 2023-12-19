@@ -8,10 +8,9 @@ bool	invalidDate(const std::string& date, myMap map) {
 	return false;
 }
 
-bool	invalidValue(const std::string& value) {
-	float conv = std::atof(value.c_str());
-	if (conv != conv || conv < 0 || conv > 1000){
-		std::cout << "Error : invalid value =>" + value <<std::endl;
+bool invalidValue(float &value, const std::string &valueStr) {
+	if (value != value || value < 0 || value > 1000){
+		std::cout << "Error : invalid value =>" << valueStr <<std::endl;
 		return true;
 	}
 	return false;
