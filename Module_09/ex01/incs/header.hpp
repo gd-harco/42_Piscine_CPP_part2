@@ -15,5 +15,5 @@
 
 #include <iostream>
 #include <stack>
-
+#define ASCII_OFFSET '0'
 #endif //HEADER_HPP
