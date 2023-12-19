@@ -45,6 +45,10 @@ int main(int argc, char **argv) {
 			return 1;
 		}
 	}
+	if (stack.empty()){
+		std::cout << "Error: empty stack ?" << std::endl;
+		return 1;
+	}
 	int result = stack.top();
 	stack.pop();
 	if (!stack.empty()){
