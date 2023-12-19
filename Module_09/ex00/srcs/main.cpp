@@ -12,8 +12,6 @@
 
 #include "header.hpp"
 
-typedef std::map<std::string, double> myMap;
-
 void	readAndFillDB(myMap & mapDB, std::ifstream& file);
 double	getDouble(const std::string& doubleStr);
 void	processFile(std::ifstream &file, const myMap &map);
@@ -45,7 +43,7 @@ void	readAndFillDB(myMap & mapDB, std::ifstream& file) {
 	}
 	while (std::getline(file, tmpStr, ',') && std::getline(file, tmpDouble)) {
 		i++;
-		if (!validDate(tmpStr)){
+		if (!validDateFormat(tmpStr)){
 			std::stringstream err;
 			err << "invalid date detected at line ";
 			err << i;
@@ -60,20 +58,6 @@ void	readAndFillDB(myMap & mapDB, std::ifstream& file) {
 		}
 		mapDB.insert(std::make_pair(tmpStr, value));
 	}
-}
-
-bool validDate(const std::string& date) {
-	if (date.length() != 10)
-		return false;
-	if (date[4] != '-' || date[7] != '-')
-		return false;
-	for (int i = 0; i < 10; ++i) {
-		if (i == 4 || i == 7)
-			continue;
-		if (!isdigit(date[i]))
-			return false;
-	}
-	return true;
 }
 
 double	getDouble(const std::string& doubleStr) {
@@ -98,15 +82,19 @@ void	processFile(std::ifstream &file, const myMap &map) {
 		std::string	currValue;
 		std::stringstream	lineStream(buff);
 		getline(lineStream, currDate, '|');
+		if (*(currDate.end() - 1) == ' ')
+			currDate.resize(currDate.length() - 1);
 		if (lineStream.eof()){
-			std::cout << "Error: invalid line : " + currDate << std::endl;
+			std::cout << "Error: invalid line => " + currDate << std::endl;
 			std::getline(file, buff);
 			continue;
 		}
 		getline(lineStream, currValue);
-		myMap::const_iterator	iterator = map.upper_bound(currDate);
-		--iterator;
-		std::cout << iterator->first << std::endl;
+		if (invalidDate(currDate, map) || invalidValue(currValue)){
+			std::getline(file, buff);
+			continue;
+		}
+
 		std::getline(file, buff);
 	}
 }
