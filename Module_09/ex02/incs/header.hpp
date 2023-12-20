@@ -17,6 +17,10 @@
 #include <deque>
 #include <vector>
 typedef std::string str;
+
 void	fillDeck(char **argv, std::deque<int>& toFill);
 void	fillVector(const std::deque<int>& deck, std::vector<int>& tofill);
+
+void	deckMerge(std::deque<int>& toMerge);
+
 #endif //HEADER_HPP
