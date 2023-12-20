@@ -13,24 +13,18 @@
 #include <algorithm>
 #include "header.hpp"
 
-typedef std::string str;
-
-void checkValidArg(std::vector<std::string>& vec, char **argList);
-
 int main(int argc, char **argv) {
-	std::vector<str> stringVec;
 	if (argc == 1) {
 		std::cout << "No integer sequence given" << std::endl;
 		return 1;
 	}
-	checkValidArg(stringVec, &argv[1]);
-	std::deque<int> deckContainer = fillDeck(&argv[1]);
-	// std::vector<int> vectorContainer = fillVector(argv);
-}
-
-void checkValidArg(std::vector<std::string>& vec, char **argList) {
-	for (int i=0; argList[i]; ++i) {
-		str tmp(argList[i]);
-
+	std::deque<int> deckContainer;
+	std::vector<int> vectorContainer;
+	try {
+		fillDeck(&argv[1], deckContainer);
+		fillVector(deckContainer, vectorContainer);
+	} catch (std::exception& e){
+		std::cout << e.what() << std::endl;
+		return 0;
 	}
 }
