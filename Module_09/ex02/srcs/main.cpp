@@ -13,6 +13,10 @@
 #include <algorithm>
 #include "header.hpp"
 
+void	print(int n){
+	std::cout << n << std::endl;
+};
+
 int main(int argc, char **argv) {
 	if (argc == 1) {
 		std::cout << "No integer sequence given" << std::endl;
@@ -28,4 +32,5 @@ int main(int argc, char **argv) {
 		return 0;
 	}
 	deckMerge(deckContainer);
+	std::for_each(deckContainer.begin(), deckContainer.end(), print);
 }
