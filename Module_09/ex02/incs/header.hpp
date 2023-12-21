@@ -22,5 +22,7 @@ void	fillDeck(char **argv, std::deque<int>& toFill);
 void	fillVector(const std::deque<int>& deck, std::vector<int>& tofill);
 
 void	deckMerge(std::deque<int>& toMerge);
+void	vectorMerge(std::vector<int>& toMerge);
+unsigned int	Jacobsthal(int n);
 
 #endif //HEADER_HPP

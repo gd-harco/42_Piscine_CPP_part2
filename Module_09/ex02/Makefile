@@ -16,7 +16,7 @@ DEBUG_NAME = ${NAME}_DEBUG
 
 SRC_PATH =	srcs/
 
-SRC =	main.cpp	fillFunction.cpp	deckMergeFunction.cpp
+SRC =	main.cpp	fillFunction.cpp	deckMergeFunction.cpp	vectorMergeFunction.cpp
 
 DIR_INCS =	incs/
 

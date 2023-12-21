@@ -32,5 +32,7 @@ int main(int argc, char **argv) {
 		return 0;
 	}
 	deckMerge(deckContainer);
+	vectorMerge(vectorContainer);
 	std::for_each(deckContainer.begin(), deckContainer.end(), print);
+	std::for_each(vectorContainer.begin(), vectorContainer.end(), print);
 }

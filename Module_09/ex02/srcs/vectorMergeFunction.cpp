@@ -1,21 +1,21 @@
 #include "header.hpp"
 #include <algorithm>
 
-typedef std::deque<std::pair<int, int> > pairDeck;
-typedef std::deque<int>::iterator deckIt;
-typedef std::deque<int>::const_iterator const_deckIt;
-typedef std::deque<std::pair<int, int> >::iterator pairIt;
+typedef std::vector<std::pair<int, int> > pairDeck;
+typedef std::vector<int>::iterator deckIt;
+typedef std::vector<int>::const_iterator const_deckIt;
+typedef std::vector<std::pair<int, int> >::iterator pairIt;
 
-void	mergeSort(std::deque<std::pair<int, int> >& pair);
-void	createPair(std::deque<int> &toMerge, std::deque<std::pair<int, int> > &pair);
-void	insertRemaining(std::deque<int>& toMerge, pairDeck& pair);
-void	placeInDeck(std::deque<int>& toMerge, pairDeck& pair, unsigned int i);
-int		binarySearch(std::deque<int>& arr, int val, int low, int high);
+void	mergeSort(std::vector<std::pair<int, int> >& pair);
+void	createPair(std::vector<int> &toMerge, std::vector<std::pair<int, int> > &pair);
+void	insertRemaining(std::vector<int>& toMerge, pairDeck& pair);
+void	placeInVector(std::vector<int>& toMerge, pairDeck& pair, unsigned int i);
+int		binarySearch(std::vector<int>& arr, int val, int low, int high);
 
-void	deckMerge(std::deque<int>& toMerge) {
-	std::deque<std::pair<int, int> > pair;
+void	vectorMerge(std::vector<int>& toMerge) {
+	std::vector<std::pair<int, int> > pair;
 	createPair(toMerge, pair);
-	mergeSort(pair);//le deque de pair est trie selon le first de chaque pair.
+	mergeSort(pair);//le vector de pair est trie selon le first de chaque pair.
 	toMerge.clear();
 	pairIt end = pair.end();
 	for (pairIt curr = pair.begin(); curr != end; ++curr)
@@ -26,7 +26,7 @@ void	deckMerge(std::deque<int>& toMerge) {
 		toMerge.erase(toMerge.begin());
 }
 
-void	insertRemaining(std::deque<int>& toMerge, pairDeck& pair) {
+void	insertRemaining(std::vector<int>& toMerge, pairDeck& pair) {
 	int	i= -1;
 	while (42){
 		i++;
@@ -35,24 +35,24 @@ void	insertRemaining(std::deque<int>& toMerge, pairDeck& pair) {
 			break;
 		if (pair[i].first == 0)
 			continue;
-		placeInDeck(toMerge, pair, i);
+		placeInVector(toMerge, pair, i);
 		if (i==0)
 			continue;
 		for (int curr = --i; pair[curr].first != 0; --curr)
-			placeInDeck(toMerge, pair, curr);
+			placeInVector(toMerge, pair, curr);
 	}
 	for (unsigned int curr = pair.size(); pair[curr].first != 0; --curr)
-		placeInDeck(toMerge, pair, curr);
+		placeInVector(toMerge, pair, curr);
 }
 
-void	placeInDeck(std::deque<int>& toMerge, pairDeck& pair, unsigned int i){ //TODO: replace with dichotomy insertion (regarder le milieu, puis le milieu du mileu, etc...)
+void	placeInVector(std::vector<int>& toMerge, pairDeck& pair, unsigned int i){ //TODO: replace with dichotomy insertion (regarder le milieu, puis le milieu du mileu, etc...)
 	int place = binarySearch(toMerge, pair[i].second, 0, toMerge.size());
 	deckIt itPlace = toMerge.begin() + place;
 	toMerge.insert(itPlace, pair[i].second);
 	pair[i].first = 0;
 }
 
-int binarySearch(std::deque<int>& arr, int val, int low, int high) {
+int binarySearch(std::vector<int>& arr, int val, int low, int high) {
 	if (high <= low)
 		return (val > arr[low]) ? (low + 1) : low;
 
@@ -66,7 +66,7 @@ int binarySearch(std::deque<int>& arr, int val, int low, int high) {
 	return binarySearch(arr, val, low, mid - 1);
 }
 
-void createPair(std::deque<int> &toMerge, std::deque<std::pair<int, int> > &pair) {
+void createPair(std::vector<int> &toMerge, std::vector<std::pair<int, int> > &pair) {
 	deckIt cur = toMerge.begin();
 	deckIt end = toMerge.end();
 	while (cur != end){
@@ -87,11 +87,11 @@ void createPair(std::deque<int> &toMerge, std::deque<std::pair<int, int> > &pair
 	}
 }
 
-void mergeSort(std::deque<std::pair<int, int> >& pair){
-	std::deque<std::pair<int, int> >::size_type size = pair.size();
+void mergeSort(std::vector<std::pair<int, int> >& pair){
+	std::vector<std::pair<int, int> >::size_type size = pair.size();
 	if (size >2){
-		std::deque<std::pair<int, int> > firstHalf(pair.begin(), pair.begin() + (size /2));
-		std::deque<std::pair<int, int> > secondHalf(pair.begin() + (size /2), pair.end());
+		std::vector<std::pair<int, int> > firstHalf(pair.begin(), pair.begin() + (size /2));
+		std::vector<std::pair<int, int> > secondHalf(pair.begin() + (size /2), pair.end());
 		mergeSort(firstHalf);
 		mergeSort(secondHalf);
 		std::merge(firstHalf.begin(), firstHalf.end(), secondHalf.begin(), secondHalf.end(), pair.begin());
