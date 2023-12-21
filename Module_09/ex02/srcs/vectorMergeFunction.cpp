@@ -45,7 +45,7 @@ void	insertRemaining(std::vector<int>& toMerge, pairDeck& pair) {
 		placeInVector(toMerge, pair, curr);
 }
 
-void	placeInVector(std::vector<int>& toMerge, pairDeck& pair, unsigned int i){ //TODO: replace with dichotomy insertion (regarder le milieu, puis le milieu du mileu, etc...)
+void	placeInVector(std::vector<int>& toMerge, pairDeck& pair, unsigned int i){
 	int place = binarySearch(toMerge, pair[i].second, 0, toMerge.size());
 	deckIt itPlace = toMerge.begin() + place;
 	toMerge.insert(itPlace, pair[i].second);

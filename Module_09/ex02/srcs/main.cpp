@@ -28,7 +28,7 @@ void	printSequence(T& seq, bool sorted){
 };
 
 int main(int argc, char **argv) {
-	if (argc == 1) {
+	if (argc == 1 || argv[1][0] == '\0') {
 		std::cout << "No integer sequence given" << std::endl;
 		return 1;
 	}
