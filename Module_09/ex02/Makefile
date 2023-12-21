@@ -16,9 +16,9 @@ DEBUG_NAME = ${NAME}_DEBUG
 
 SRC_PATH =	srcs/
 
-SRC =	main.cpp	fillFunction.cpp	deckMergeFunction.cpp	vectorMergeFunction.cpp
+SRC =	main.cpp	fillFunction.cpp	deckMergeFunction.cpp	vectorMergeFunction.cpp TimeAsset.cpp
 
-DIR_INCS =	incs/
+DIR_INCS =	incs/	srcs/
 
 INCLUDES =\
 	$(addprefix -I , $(DIR_INCS))

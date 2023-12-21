@@ -11,6 +11,9 @@
 /* ************************************************************************** */
 
 #include <algorithm>
+#include <ctime>
+#include <sys/time.h>
+#include "TimeAsset.hpp"
 #include "header.hpp"
 
 void print(int n){
@@ -42,7 +45,17 @@ int main(int argc, char **argv) {
 		return 0;
 	}
 	printSequence(vectorContainer, false);
+	TimeAsset deckStart;
 	deckMerge(deckContainer);
+	TimeAsset deckEnd;
+	TimeAsset *durationDeck = deckEnd - deckStart;
+	TimeAsset vecStart;
 	vectorMerge(vectorContainer);
+	TimeAsset vecEnd;
+	TimeAsset *durationVector = vecEnd - vecStart;
 	printSequence(vectorContainer, true);
+	std::cout << "Time to sort " << deckContainer.size() << " element using deque container: "  << *durationDeck << std::endl;
+	std::cout << "Time to sort " << deckContainer.size() << " element using vector container: "  << *durationVector << std::endl;
+	delete durationDeck;
+	delete durationVector;
 }
