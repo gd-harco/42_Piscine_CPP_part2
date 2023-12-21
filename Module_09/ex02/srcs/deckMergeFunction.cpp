@@ -11,6 +11,7 @@ unsigned int	Jacobsthal(int n);
 void createPair(std::deque<int> &toMerge, std::deque<std::pair<int, int> > &pair);
 void	insertRemaining(std::deque<int>& toMerge, pairDeck& pair);
 void	placeInDeck(std::deque<int>& toMerge, pairDeck& pair, unsigned int i);
+int binarySearch(std::deque<int>& arr, int val, int low, int high);
 deckIt 	getPosInDeck(const int& toPlace, std::deque<int>& deck);
 
 void	deckMerge(std::deque<int>& toMerge) {
@@ -59,16 +60,24 @@ void	insertRemaining(std::deque<int>& toMerge, pairDeck& pair) {
 }
 
 void	placeInDeck(std::deque<int>& toMerge, pairDeck& pair, unsigned int i){ //TODO: replace with dichotomy insertion (regarder le milieu, puis le milieu du mileu, etc...)
-	deckIt place = getPosInDeck(pair[i].second, toMerge);;
-	toMerge.insert(place, pair[i].second);
+	int place = binarySearch(toMerge, pair[i].second, 0, toMerge.size());
+	deckIt itPlace = toMerge.begin() + place;
+	toMerge.insert(itPlace, pair[i].second);
 	pair[i].first = 0;
 }
 
-deckIt 	getPosInDeck(const int& toPlace, std::deque<int>& deck){
-	deckIt curr = deck.begin();
-	while (toPlace > *curr)
-		curr++;
-	return curr;
+int binarySearch(std::deque<int>& arr, int val, int low, int high) {
+	if (high <= low)
+		return (val > arr[low]) ? (low + 1) : low;
+
+	int mid = (low + high) / 2;
+
+	if (val == arr[mid])
+		return mid + 1;
+
+	if (val > arr[mid])
+		return binarySearch(arr, val, mid + 1, high);
+	return binarySearch(arr, val, low, mid - 1);
 }
 
 void createPair(std::deque<int> &toMerge, std::deque<std::pair<int, int> > &pair) {
