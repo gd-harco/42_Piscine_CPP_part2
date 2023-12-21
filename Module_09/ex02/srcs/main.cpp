@@ -13,8 +13,18 @@
 #include <algorithm>
 #include "header.hpp"
 
-void	print(int n){
-	std::cout << n << std::endl;
+void print(int n){
+	std::cout << n << " ";
+}
+
+template <typename T>
+void	printSequence(T& seq, bool sorted){
+	if (sorted)
+		std::cout << "Unsorted Sequence : ";
+	else
+		std::cout << "Sorted Sequence : ";
+	std::for_each(seq.begin(), seq.end(), print);
+	std::cout << std::endl;
 };
 
 int main(int argc, char **argv) {
@@ -31,8 +41,8 @@ int main(int argc, char **argv) {
 		std::cout << e.what() << std::endl;
 		return 0;
 	}
+	printSequence(vectorContainer, false);
 	deckMerge(deckContainer);
 	vectorMerge(vectorContainer);
-	std::for_each(deckContainer.begin(), deckContainer.end(), print);
-	std::for_each(vectorContainer.begin(), vectorContainer.end(), print);
+	printSequence(vectorContainer, true);
 }
