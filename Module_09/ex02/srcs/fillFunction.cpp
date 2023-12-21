@@ -1,14 +1,15 @@
 #include "header.hpp"
 #include <sstream>
 #include <cstdlib>
+#include <climits>
 
 void	fillDeck(char **argv, std::deque<int>& toFill) {
 	for (int i = 0; argv[i]; ++i) {
 		char *buff = NULL;
-		int tmpInt = strtol(argv[i], &buff, 10);
-		if (*buff != '\0')
+		long tmpInt = strtol(argv[i], &buff, 10);
+		if (*buff != '\0' || tmpInt < 0 || tmpInt > LONG_MAX)
 			throw std::invalid_argument("Unauthorized character detected");
-		toFill.push_back(tmpInt);
+		toFill.push_back(static_cast<int>(tmpInt));
 	}
 }
 
