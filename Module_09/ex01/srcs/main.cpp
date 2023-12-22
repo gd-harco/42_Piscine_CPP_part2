@@ -17,6 +17,7 @@ typedef std::string::iterator itera;
 bool	isInCharset(int c);
 void	calculate(std::stack<int> &stack, const char & sign);
 
+//TODO: 
 int main(int argc, char **argv) {
 	if (argc != 2) {
 		std::cout << "Error: invalid number of argument" << std::endl;

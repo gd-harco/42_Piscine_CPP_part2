@@ -45,7 +45,7 @@ void	insertRemaining(std::deque<int>& toMerge, pairDeck& pair) {
 		placeInDeck(toMerge, pair, curr);
 }
 
-void	placeInDeck(std::deque<int>& toMerge, pairDeck& pair, unsigned int i){ //TODO: replace with dichotomy insertion (regarder le milieu, puis le milieu du mileu, etc...)
+void	placeInDeck(std::deque<int>& toMerge, pairDeck& pair, unsigned int i){
 	int place = binarySearch(toMerge, pair[i].second, 0, toMerge.size());
 	deckIt itPlace = toMerge.begin() + place;
 	toMerge.insert(itPlace, pair[i].second);
