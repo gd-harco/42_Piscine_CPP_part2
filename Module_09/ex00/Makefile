@@ -15,9 +15,10 @@ NAME =	btc
 SRC_PATH =	srcs/
 
 SRC =	main.cpp \
-		valueCheck.cpp
+		valueCheck.cpp	\
+		BitcoinExchange/BitcoinExchange.cpp
 
-DIR_INCS =	incs/
+DIR_INCS =	incs/ srcs/BitcoinExchange
 
 INCLUDES =\
 	$(addprefix -I , $(DIR_INCS))
@@ -25,7 +26,7 @@ INCLUDES =\
 DIR_BUILD	=	.build/
 OBJS		=	$(patsubst %.cpp, $(DIR_BUILD)%.o, $(SRC))
 DEPS		=	$(patsubst %.cpp, $(DIR_BUILD)%.d, $(SRC))
-CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98 -glldb
+CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
 DEBUGFLAGS	=	-fsanitize=address -g3
 DEPSFLAGS	=	-MMD -MP
 RM			=	rm -rf
