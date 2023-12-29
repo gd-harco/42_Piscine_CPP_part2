@@ -39,6 +39,18 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &obj) {
 	return *this;
 }
 
+int BitcoinExchange::year() const {
+	return _year;
+}
+
+int BitcoinExchange::month() const {
+	return _month;
+}
+
+int BitcoinExchange::day() const {
+	return _day;
+}
+
 bool	ValidDay(const int& year, const int& month, const int& day) {
 	if(day < 1)
 		return false;

@@ -15,6 +15,10 @@ public:
 	BitcoinExchange(BitcoinExchange const &obj);
 	~BitcoinExchange();
 	BitcoinExchange &operator=(const BitcoinExchange &obj);
+	int year() const;
+	int month() const;
+	int day() const;
+
 private:
 	int	_year;
 	int	_month;
