@@ -4,7 +4,7 @@
 
 #include "BitcoinExchange.hpp"
 
- bool	invalidDay(int year, int month, int day);
+ bool	ValidDay(int&year, int&month, int&day);
 
 BitcoinExchange::BitcoinExchange(std::fstream &date) {
 	std::string	data[3];
@@ -21,26 +21,43 @@ BitcoinExchange::BitcoinExchange(std::fstream &date) {
 	if (_month != _month || _month < 0 || _month > 12)
 		throw std::invalid_argument("Invalid month");
 	_day = std::atof(data[2].c_str());
-	if (invalidDay(_year, _month, _day))
+	if (!ValidDay(_year, _month, _day))
 		throw std::invalid_argument("Invalid day");
 }
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &obj) {
-	std::cout << "BitcoinExchange : Copy Constructor Called" << std::endl;
-	if (this != &obj)
-		*this = obj;
-}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &obj)
+	:_year(obj._year), _month(obj._month), _day(obj._day){}
 
-BitcoinExchange::~BitcoinExchange() {
-	std::cout << "BitcoinExchange : Destructor Called" << std::endl;
-}
+BitcoinExchange::~BitcoinExchange() {}
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &obj) {
 	if (this == &obj)
 		return *this;
-	//this.elem =
+	this->_day = obj._day;
+	this->_month = obj._month;
+	this->_year = obj._year;
+	return *this;
 }
 
-// bool	invalidDay(int year, int month, int day) {
-// 	if (day < 0 || day > 31)
-// }
+bool	ValidDay(const int& year, const int& month, const int& day) {
+	if(day < 1)
+		return false;
+	if(month == 2) {
+		if((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+			if(day > 29)
+				return false;
+			}
+		if(day > 28)
+			return false;
+		}
+	else if(month == 4 || month == 6 || month == 9 || month == 11) {
+		if(day > 30) {
+			return false;
+		}
+	} else {
+		if(day > 31) {
+			return false;
+		}
+	}
+	return true;
+}
