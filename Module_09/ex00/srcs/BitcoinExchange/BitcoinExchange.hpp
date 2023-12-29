@@ -7,17 +7,18 @@
 
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 
 class BitcoinExchange {
 public:
-	BitcoinExchange(std::fstream const &date);
+	explicit BitcoinExchange(std::fstream &date);
 	BitcoinExchange(BitcoinExchange const &obj);
 	~BitcoinExchange();
 	BitcoinExchange &operator=(const BitcoinExchange &obj);
 private:
-	int	year;
-	int	month;
-	int	day;
+	int	_year;
+	int	_month;
+	int	_day;
 };
 
 
