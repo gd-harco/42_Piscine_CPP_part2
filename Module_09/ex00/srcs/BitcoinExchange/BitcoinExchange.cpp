@@ -6,7 +6,10 @@
 
  bool	ValidDay(int&year, int&month, int&day);
 
-BitcoinExchange::BitcoinExchange(std::fstream &date) {
+BitcoinExchange::BitcoinExchange()
+	: _year(0), _month(0), _day(0) {}
+
+BitcoinExchange::BitcoinExchange(std::stringstream &date) {
 	std::string	data[3];
 
 	std::getline(date, data[0], '-');

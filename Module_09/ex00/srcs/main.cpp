@@ -35,20 +35,21 @@ int main(int argc, char **argv) {
 }
 
 void	readAndFillDB(myMap & mapDB, std::ifstream& file) {
-	std::string	tmpStr;
+	std::string	strDate;
 	std::string	tmpDouble;
 	int			i = 1;
-	std::getline(file, tmpStr);
-	if (tmpStr != "date,exchange_rate") {
+	std::getline(file, strDate);
+	if (strDate != "date,exchange_rate")
 		throw std::invalid_argument("database wrongly formated");
-	}
-	while (std::getline(file, tmpStr, ',') && std::getline(file, tmpDouble)) {
+	while (std::getline(file, strDate, ',') && std::getline(file, tmpDouble)) {
 		i++;
-		if (!validDateFormat(tmpStr)){
-			std::stringstream err;
-			err << "invalid date detected at line ";
-			err << i;
-			throw std::invalid_argument(err.str());
+		std::stringstream test(strDate);
+		BitcoinExchange currDate;
+		try {
+			currDate = BitcoinExchange(test);
+		} catch (std::invalid_argument& e) {
+			std::cout << e.what() << std::endl;
+			continue;
 		}
 		const double value = getFloat(tmpDouble);
 		if (value != value){
@@ -57,7 +58,7 @@ void	readAndFillDB(myMap & mapDB, std::ifstream& file) {
 			err << i;
 			throw std::invalid_argument(err.str());
 		}
-		mapDB.insert(std::make_pair(tmpStr, value));
+		mapDB.insert(std::make_pair(currDate, value));
 	}
 }
 

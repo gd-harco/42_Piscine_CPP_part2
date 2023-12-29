@@ -9,8 +9,9 @@
 #include <cmath>
 #include <sstream>
 #include <algorithm>
+#include "BitcoinExchange.hpp"
 
-typedef std::map<std::string, float> myMap;
+typedef std::map<BitcoinExchange, float> myMap;
 
 bool	validDateFormat(const std::string& date);
 bool	invalidDate(const std::string& date, myMap map);

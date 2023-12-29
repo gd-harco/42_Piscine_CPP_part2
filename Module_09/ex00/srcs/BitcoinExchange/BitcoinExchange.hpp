@@ -11,7 +11,8 @@
 
 class BitcoinExchange {
 public:
-	explicit BitcoinExchange(std::fstream &date);
+	BitcoinExchange();
+	explicit BitcoinExchange(std::stringstream &date);
 	BitcoinExchange(BitcoinExchange const &obj);
 	~BitcoinExchange();
 	BitcoinExchange &operator=(const BitcoinExchange &obj);
