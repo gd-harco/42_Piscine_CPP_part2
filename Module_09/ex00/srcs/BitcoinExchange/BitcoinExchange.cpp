@@ -9,12 +9,12 @@
 BitcoinExchange::BitcoinExchange()
 	: _year(0), _month(0), _day(0) {}
 
-BitcoinExchange::BitcoinExchange(std::stringstream &date) {
+BitcoinExchange::BitcoinExchange(std::string &date) {
 	std::string	data[3];
 
-	std::getline(date, data[0], '-');
-	std::getline(date, data[1], '-');
-	std::getline(date, data[2]);
+	if (date.length() != 10 || date[5] )
+		throw std::invalid_argument("Wrong date format");
+	data[0] = date.substr(0, 4);
 	if (data[0].length() != 4 || data[1].length() != 2 || data[2].length() != 2)
 		throw std::invalid_argument("Wrong date format");
 	_year = std::atof(data[0].c_str());
