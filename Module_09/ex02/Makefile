@@ -21,9 +21,9 @@ SRC =	main.cpp	\
 		deckMergeFunction.cpp	\
 		vectorMergeFunction.cpp	\
 		TimeAsset.cpp	\
-		PmergeMe/PmergeMe.cpp
+		PmergeMe.cpp
 
-DIR_INCS =	incs/	srcs/ srcs/PmergeMe/
+DIR_INCS =	incs/	srcs/
 
 INCLUDES =\
 	$(addprefix -I , $(DIR_INCS))
