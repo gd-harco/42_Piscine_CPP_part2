@@ -21,14 +21,19 @@ BitcoinExchange::BitcoinExchange(std::string &date) {
 	} catch (std::exception & e){
 		throw std::invalid_argument("Wrong date format");
 	}
-	_year = std::atof(data[0].c_str());
-	if (_year != _year || _year < 0)
+	char *end;
+	int temp;
+	_year = std::strtod(data[0].c_str(), &end);
+	temp = _year;
+	if (temp != _year || *end != '\0' || errno != 0 || _year < 0)
 		throw std::invalid_argument("Invalid year");
-	_month = std::atof(data[1].c_str());
-	if (_month != _month || _month < 0 || _month > 12)
+	_month = std::strtod(data[1].c_str(), &end);
+	temp = _month;
+	if (temp != _month || *end != '\0' || errno != 0 || _month < 0 || _month > 12)
 		throw std::invalid_argument("Invalid month");
-	_day = std::atof(data[2].c_str());
-	if (!ValidDay(_year, _month, _day))
+	_day = std::strtod(data[2].c_str(), &end);
+	temp = _day;
+	if (temp != _day || !ValidDay(_year, _month, _day))
 		throw std::invalid_argument("Invalid day");
 }
 
