@@ -43,10 +43,8 @@ void	readAndFillDB(myMap & mapDB, std::ifstream& file) {
 		throw std::invalid_argument("database wrongly formated");
 	while (std::getline(file, strDate, ',') && std::getline(file, tmpDouble)) {
 		i++;
-		std::stringstream test(strDate);
-		BitcoinExchange currDate;
 		try {
-			currDate = BitcoinExchange(test);
+			BitcoinExchange currDate(strDate);
 		} catch (std::invalid_argument& e) {
 			std::cout << e.what() << std::endl;
 			continue;
@@ -58,7 +56,7 @@ void	readAndFillDB(myMap & mapDB, std::ifstream& file) {
 			err << i;
 			throw std::invalid_argument(err.str());
 		}
-		mapDB.insert(std::make_pair(currDate, value));
+		mapDB.insert(std::make_pair(strDate, value));
 	}
 }
 
@@ -67,7 +65,7 @@ double	getFloat(const std::string& doubleStr) {
 		if (!isdigit(doubleStr[i]) && doubleStr[i] != '.')
 			return NAN;
 	}
-	return std::atof(doubleStr.c_str());
+	return std::strtod(doubleStr.c_str(), NULL);
 }
 
 void	processFile(std::ifstream &file, const myMap &map) {
@@ -90,8 +88,15 @@ void	processFile(std::ifstream &file, const myMap &map) {
 			std::getline(file, buff);
 			continue;
 		}
+		try {
+			BitcoinExchange test(currDate);
+		} catch (std::exception &e) {
+			std::cout << e.what() << ": " << currDate <<std::endl;
+			std::getline(file, buff);
+			continue;
+		}
 		getline(lineStream, tmp);
-		float		currValue = std::atof(tmp.c_str());
+		float	currValue = std::strtof(tmp.c_str(), NULL);
 		if (invalidDate(currDate, map) || invalidValue(currValue, tmp)){
 			std::getline(file, buff);
 			continue;
