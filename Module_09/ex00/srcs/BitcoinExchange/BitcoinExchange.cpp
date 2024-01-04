@@ -4,7 +4,7 @@
 
 #include "BitcoinExchange.hpp"
 
- bool	ValidDay(int&year, int&month, int&day);
+bool	ValidDay(int year, int month, int day);
 
 BitcoinExchange::BitcoinExchange()
 	: _year(0), _month(0), _day(0) {}
@@ -16,7 +16,7 @@ BitcoinExchange::BitcoinExchange(std::string &date) {
 		throw std::invalid_argument("Wrong date format");
 	try {
 		data[0] = date.substr(0, 4);
-		data[1] = date.substr(4,2);
+		data[1] = date.substr(5,2);
 		data[2] = date.substr(8,2);
 	} catch (std::exception & e){
 		throw std::invalid_argument("Wrong date format");
@@ -63,7 +63,7 @@ int BitcoinExchange::day() const {
 	return _day;
 }
 
-bool	ValidDay(const int& year, const int& month, const int& day) {
+bool	ValidDay(const int year, const int month, const int day) {
 	if(day < 1)
 		return false;
 	if(month == 2) {
