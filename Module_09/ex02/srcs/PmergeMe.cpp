@@ -19,17 +19,15 @@ PmergeMe::PmergeMe(char **argv) {
 }
 
 PmergeMe::PmergeMe() {
-		error = true;
+	error = true;
 }
 
 PmergeMe::PmergeMe(const PmergeMe &obj) {
-	std::cout << "PmergeMe : Copy Constructor Called" << std::endl;
 	if (this != &obj)
 		*this = obj;
 }
 
 PmergeMe::~PmergeMe() {
-	std::cout << "PmergeMe : Destructor Called" << std::endl;
 }
 
 PmergeMe &PmergeMe::operator=(const PmergeMe &obj) {
