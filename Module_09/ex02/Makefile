@@ -16,9 +16,14 @@ DEBUG_NAME = ${NAME}_DEBUG
 
 SRC_PATH =	srcs/
 
-SRC =	main.cpp	fillFunction.cpp	deckMergeFunction.cpp	vectorMergeFunction.cpp TimeAsset.cpp
+SRC =	main.cpp	\
+		fillFunction.cpp	\
+		deckMergeFunction.cpp	\
+		vectorMergeFunction.cpp	\
+		TimeAsset.cpp	\
+		PmergeMe/PmergeMe.cpp
 
-DIR_INCS =	incs/	srcs/
+DIR_INCS =	incs/	srcs/ srcs/PmergeMe/
 
 INCLUDES =\
 	$(addprefix -I , $(DIR_INCS))
@@ -31,7 +36,7 @@ DEBUGFLAGS	=	-fsanitize=address -g3
 DEPSFLAGS	=	-MMD -MP
 RM			=	rm -rf
 AR			=	ar rcs
-CXX			=	c++
+CXX			=	g++
 
 .PHONY:		all
 all:

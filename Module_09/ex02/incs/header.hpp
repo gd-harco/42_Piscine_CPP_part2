@@ -16,6 +16,8 @@
 #include <iostream>
 #include <deque>
 #include <vector>
+
+#include "PmergeMe.hpp"
 typedef std::string str;
 
 void	fillDeck(char **argv, std::deque<int>& toFill);

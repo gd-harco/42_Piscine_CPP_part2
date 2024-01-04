@@ -35,27 +35,21 @@ int main(int argc, char **argv) {
 		std::cout << "No integer sequence given" << std::endl;
 		return 1;
 	}
-	std::deque<int> deckContainer;
-	std::vector<int> vectorContainer;
-	try {
-		fillDeck(&argv[1], deckContainer);
-		fillVector(deckContainer, vectorContainer);
-	} catch (std::exception& e){
-		std::cout << e.what() << std::endl;
+	PmergeMe asset(&argv[1]);
+	if (asset.error)
 		return 0;
-	}
-	printSequence(vectorContainer, false);
+	printSequence(asset.vectorContainer, false);
 	TimeAsset deckStart;
-	deckMerge(deckContainer);
+	deckMerge(asset.deckContainer);
 	TimeAsset deckEnd;
 	TimeAsset *durationDeck = deckEnd - deckStart;
 	TimeAsset vecStart;
-	vectorMerge(vectorContainer);
+	vectorMerge(asset.vectorContainer);
 	TimeAsset vecEnd;
 	TimeAsset *durationVector = vecEnd - vecStart;
-	printSequence(vectorContainer, true);
-	std::cout << "Time to sort " << deckContainer.size() << " element using deque container: "  << *durationDeck << std::endl;
-	std::cout << "Time to sort " << deckContainer.size() << " element using vector container: "  << *durationVector << std::endl;
+	printSequence(asset.vectorContainer, true);
+	std::cout << "Time to sort " << asset.deckContainer.size() << " element using deque container: "  << *durationDeck << std::endl;
+	std::cout << "Time to sort " << asset.deckContainer.size() << " element using vector container: "  << *durationVector << std::endl;
 	delete durationDeck;
 	delete durationVector;
 }
