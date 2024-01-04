@@ -11,7 +11,7 @@
 #include <algorithm>
 #include "BitcoinExchange.hpp"
 
-typedef std::map<BitcoinExchange, float> myMap;
+typedef std::map<std::string, float> myMap;
 
 bool	validDateFormat(const std::string& date);
 bool	invalidDate(const std::string& date, myMap map);
