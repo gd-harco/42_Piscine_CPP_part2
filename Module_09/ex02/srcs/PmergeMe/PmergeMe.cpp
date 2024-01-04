@@ -33,9 +33,10 @@ PmergeMe::~PmergeMe() {
 }
 
 PmergeMe &PmergeMe::operator=(const PmergeMe &obj) {
-	if (this == &obj)
-		return *this;
-	else
-	//copy instruction for the class
-
+	if (this != &obj) {
+		this->error = obj.error;
+		this->deckContainer = obj.deckContainer;
+		this->vectorContainer = obj.vectorContainer;
+	}
+	return *this;
 }

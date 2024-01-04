@@ -22,7 +22,7 @@ void print(int n){
 
 template <typename T>
 void	printSequence(T& seq, bool sorted){
-	if (sorted)
+	if (!sorted)
 		std::cout << "Unsorted Sequence : ";
 	else
 		std::cout << "Sorted Sequence : ";
