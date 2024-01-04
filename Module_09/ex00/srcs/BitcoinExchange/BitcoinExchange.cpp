@@ -12,11 +12,15 @@ BitcoinExchange::BitcoinExchange()
 BitcoinExchange::BitcoinExchange(std::string &date) {
 	std::string	data[3];
 
-	if (date.length() != 10 || date[5] )
+	if (date.length() != 10 || (date[4] != '-' || date[7] != '-'))
 		throw std::invalid_argument("Wrong date format");
-	data[0] = date.substr(0, 4);
-	if (data[0].length() != 4 || data[1].length() != 2 || data[2].length() != 2)
+	try {
+		data[0] = date.substr(0, 4);
+		data[1] = date.substr(4,2);
+		data[2] = date.substr(8,2);
+	} catch (std::exception & e){
 		throw std::invalid_argument("Wrong date format");
+	}
 	_year = std::atof(data[0].c_str());
 	if (_year != _year || _year < 0)
 		throw std::invalid_argument("Invalid year");
