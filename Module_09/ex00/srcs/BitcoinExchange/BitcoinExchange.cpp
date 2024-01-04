@@ -70,10 +70,10 @@ bool	ValidDay(const int year, const int month, const int day) {
 		if((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
 			if(day > 29)
 				return false;
-			}
-		if(day > 28)
-			return false;
 		}
+		else if(day > 28)
+			return false;
+	}
 	else if(month == 4 || month == 6 || month == 9 || month == 11) {
 		if(day > 30) {
 			return false;
