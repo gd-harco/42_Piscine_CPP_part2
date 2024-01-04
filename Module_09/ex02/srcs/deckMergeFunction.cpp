@@ -41,7 +41,7 @@ void	insertRemaining(std::deque<int>& toMerge, pairDeck& pair) {
 		for (int curr = --i; pair[curr].first != 0; --curr)
 			placeInDeck(toMerge, pair, curr);
 	}
-	for (unsigned int curr = pair.size(); pair[curr].first != 0; --curr)
+	for (unsigned int curr = pair.size() - 1; pair[curr].first != 0; --curr)
 		placeInDeck(toMerge, pair, curr);
 }
 
