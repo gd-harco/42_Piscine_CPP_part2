@@ -53,8 +53,6 @@ void	readAndFillDB(myMap & mapDB, std::ifstream& file) {
 			std::cout << e.what() << std::endl;
 			continue;
 		}
-		const double value = getFloat(tmpDouble);
-		if (value != value){
 		const double value = getDouble(tmpDouble);
 		if (value != value) {
 			std::stringstream err;
@@ -71,11 +69,18 @@ double	getDouble(const std::string& doubleStr) {
 		if (!isdigit(doubleStr[i]) && doubleStr[i] != '.')
 			return NAN;
 	}
-	return std::strtod(doubleStr.c_str(), NULL);
+	char	*check = NULL;
+	double	rValue;
+	rValue = std::strtod(doubleStr.c_str(), &check);
+	if (*check == '\0')
+		return rValue;
+	return NAN;
 }
 
 void	processFile(std::ifstream &file, const myMap &map) {
 	std::string tmp;
+	char *check = NULL;
+
 	std::getline(file, tmp);
 	if (tmp != "date | value") {
 		std::cout << "invalid input file" << std::endl;
@@ -84,7 +89,12 @@ void	processFile(std::ifstream &file, const myMap &map) {
 
 	std::string buff;
 	std::getline(file, buff);
-	while (!buff.empty()){
+	while (!file.eof()) {
+		if (buff.empty()) {
+			std::cout << "Error: empty line"<< std::endl;
+			std::getline(file, buff);
+			continue;
+		}
 
 		std::string	currDate;
 		std::stringstream	lineStream(buff);
@@ -105,8 +115,13 @@ void	processFile(std::ifstream &file, const myMap &map) {
 			continue;
 		}
 		getline(lineStream, tmp);
-		float	currValue = std::strtof(tmp.c_str(), NULL);
-		if (invalidDate(currDate, map) || invalidValue(currValue, tmp)){
+		float	currValue = std::strtof(tmp.c_str(), &check);
+		if (*check != '\0') {
+			std::cout << "Wrong data value =>" + tmp << std::endl;
+			std::getline(file, buff);
+			continue;
+		}
+		if (invalidDate(currDate, map) || invalidValue(currValue, tmp)) {
 			std::getline(file, buff);
 			continue;
 		}
