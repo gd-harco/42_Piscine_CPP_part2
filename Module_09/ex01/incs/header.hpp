@@ -15,5 +15,6 @@
 
 #include <iostream>
 #include <stack>
+#include "RPN.hpp"
 #define ASCII_OFFSET '0'
 #endif //HEADER_HPP

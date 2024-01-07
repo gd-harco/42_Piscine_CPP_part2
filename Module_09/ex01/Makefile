@@ -14,7 +14,7 @@ NAME =	RPN
 
 SRC_PATH =	srcs/
 
-SRC =	main.cpp
+SRC =	main.cpp RPN.cpp
 
 DIR_INCS =	incs/
 
