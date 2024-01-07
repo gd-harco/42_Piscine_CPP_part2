@@ -3,23 +3,48 @@
 //
 
 #include "RPN.hpp"
+
 RPN::RPN() {
-	std::cout << "RPN : Default Constructor Called" << std::endl;
 }
 
 RPN::RPN(const RPN &obj) {
-	std::cout << "RPN : Copy Constructor Called" << std::endl;
 	if (this != &obj)
 		*this = obj;
 }
 
 RPN::~RPN() {
-	std::cout << "RPN : Destructor Called" << std::endl;
 }
 
 RPN &RPN::operator=(const RPN &rhs) {
 	if (this != &rhs) {
-		//copy code goes here
+		this->stack = rhs.stack;
 	}
 	return *this ;
+}
+
+void	RPN::calculate(std::stack<int> &pStack, const char & sign) {
+	if (pStack.empty())
+		throw std::exception();
+	int second = pStack.top();
+	pStack.pop();
+	if (pStack.empty())
+		throw std::exception();
+	int first = pStack.top();
+	pStack.pop();
+	switch (sign) {
+		case '+':
+			pStack.push(first + second);
+			return;
+		case '-':
+			pStack.push(first - second);
+			return;
+		case '*':
+			pStack.push(first * second);
+			return;
+		case '/':
+			if (second == 0)
+				throw std::invalid_argument("Division by 0");
+			pStack.push(first / second);
+			return;
+	}
 }

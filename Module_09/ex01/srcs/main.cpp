@@ -15,15 +15,13 @@
 typedef std::string::iterator itera;
 
 bool	isInCharset(int c);
-void	calculate(std::stack<int> &stack, const char & sign);
 
-//TODO: 
 int main(int argc, char **argv) {
 	if (argc != 2) {
 		std::cout << "Error: invalid number of argument" << std::endl;
 		return 1;
 	}
-	std::stack<int> stack;
+	RPN	rpn;
 	std::string	arg = argv[1];
 	itera end = arg.end();
 	for (itera	cur = arg.begin(); cur != end; ++cur) {
@@ -31,28 +29,31 @@ int main(int argc, char **argv) {
 			continue;
 		else if (std::isdigit(*cur)){
 			int curInt = *cur - ASCII_OFFSET;
-			stack.push(curInt);
+			rpn.stack.push(curInt);
 		}
 		else if (isInCharset(*cur)) {
 			try {
-				calculate(stack, *cur);
-			} catch (std::exception &e){
+				rpn.calculate(rpn.stack, *cur);
+			}	catch (std::invalid_argument& e) {
+				std::cout << "Error: " <<  e.what() << std::endl;
+				return 1;
+			}	catch (std::exception &e) {
 				std::cout << "Error, probably too many sign and not enough value" << std::endl;
 				return 1;
 			}
 		}
 		else {
-			std::cout << "Error" <<std::endl;
+			std::cout << "Error, unrecognized token: " << *cur << std::endl;
 			return 1;
 		}
 	}
-	if (stack.empty()){
+	if (rpn.stack.empty()){
 		std::cout << "Error: empty stack ?" << std::endl;
 		return 1;
 	}
-	int result = stack.top();
-	stack.pop();
-	if (!stack.empty()){
+	int result = rpn.stack.top();
+	rpn.stack.pop();
+	if (!rpn.stack.empty()){
 		std::cout << "Error, probably not enough sign" << std::endl;
 		return 1;
 	}
@@ -70,30 +71,5 @@ bool	isInCharset(int c) {
 			return true;
 		default:
 			return false;
-	}
-}
-
-void	calculate(std::stack<int> &stack, const char & sign) {
-	if (stack.empty())
-		throw std::exception();
-	int second = stack.top();
-	stack.pop();
-	if (stack.empty())
-		throw std::exception();
-	int first = stack.top();
-	stack.pop();
-	switch (sign) {
-		case '+':
-			stack.push(first + second);
-			return;
-		case '-':
-			stack.push(first - second);
-			return;
-		case '*':
-			stack.push(first * second);
-			return;
-		case '/':
-			stack.push(first / second);
-			return;
 	}
 }

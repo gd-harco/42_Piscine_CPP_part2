@@ -4,14 +4,17 @@
 
 #ifndef RPN_HPP
 #define RPN_HPP
+#include <iostream>
+#include <stack>
 
 class RPN {
 public:
-	RPN::RPN() {}
-	RPN::RPN(const RPN &obj) {}
-	RPN::~RPN() {}
-	RPN &RPN::operator=(const RPN &rhs) {}
-
-}
+	RPN();
+	RPN(const RPN &obj);
+	~RPN();
+	RPN &operator=(const RPN &rhs);
+	std::stack<int>	stack;
+	void	calculate(std::stack<int> &pStack, const char & sign);
+};
 
 #endif //RPN_HPP

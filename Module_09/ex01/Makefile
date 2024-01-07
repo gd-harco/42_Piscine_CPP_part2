@@ -16,7 +16,7 @@ SRC_PATH =	srcs/
 
 SRC =	main.cpp RPN.cpp
 
-DIR_INCS =	incs/
+DIR_INCS =	incs/ srcs/
 
 INCLUDES =\
 	$(addprefix -I , $(DIR_INCS))
