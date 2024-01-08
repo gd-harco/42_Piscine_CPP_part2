@@ -99,7 +99,7 @@ void	processFile(std::ifstream &file, const myMap &map) {
 		std::string	currDate;
 		std::stringstream	lineStream(buff);
 		getline(lineStream, currDate, '|');
-		while (*(currDate.end() - 1) == ' ')
+		while (*(currDate.end() - 1) == ' ') {
 			currDate.resize(currDate.length() - 1);
 		}
 		if (lineStream.eof()){
